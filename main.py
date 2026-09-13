@@ -1,6 +1,6 @@
 """
 ╔══════════════════════════════════════════════════╗
-║       HIND DEALS BOT v3.0  —  main.py           ║
+║        HIND DEALS BOT v3.0  —  main.py            ║
 ║  Extended from bot.py with paginated start menu  ║
 ║  • Dynamic paginated /start service browse       ║
 ║  • Auto-reflect admin add/remove/toggle          ║
@@ -34,7 +34,7 @@ from aiogram.fsm.state import State, StatesGroup
 #  CONFIGURATION
 # ══════════════════════════════════════════════════
 BOT_TOKEN          = "8738071957:AAFswpTbZJXBAcufUdSDfSgHzGO-2P0hBRQ"
-OWNER_ID           = 8733687681           # Only owner can add/remove admins
+OWNER_ID           = 8733687681            # Only owner can add/remove admins
 CHANNEL_USERNAME   = "HIIND_DEALS_OFFICIAL"
 UPI_ID             = "12749702@axl"
 DB_NAME            = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hind_deals_mini.db")
@@ -61,6 +61,85 @@ if not CHANNEL_USERNAME.startswith("@"):
     CHANNEL_USERNAME = "@" + CHANNEL_USERNAME
 
 # ══════════════════════════════════════════════════
+#  PREMIUM EMOJI SETUP
+# ══════════════════════════════════════════════════
+P_EMOJI = {
+    "✅": '<tg-emoji emoji-id="6154223527080759944">✅</tg-emoji>',
+    "👑": '<tg-emoji emoji-id="6154611916678369390">👑</tg-emoji>',
+    "❤️": '<tg-emoji emoji-id="6154619677684272865">❤️</tg-emoji>',
+    "🍿": '<tg-emoji emoji-id="6154409593653956339">🍿</tg-emoji>',
+    "⭐": '<tg-emoji emoji-id="6154534143410573519">⭐</tg-emoji>',
+    "✉️": '<tg-emoji emoji-id="6154247978329576031">✉️</tg-emoji>',
+    "💵": '<tg-emoji emoji-id="6154665938777019329">💵</tg-emoji>',
+    "💰": '<tg-emoji emoji-id="6327928561629926045">💰</tg-emoji>',
+    "🎮": '<tg-emoji emoji-id="5213430392798851273">🎮</tg-emoji>',
+    "📞": '<tg-emoji emoji-id="5215532388448216191">📞</tg-emoji>',
+    "📺": '<tg-emoji emoji-id="5213374188856814038">📺</tg-emoji>',
+    "📷": '<tg-emoji emoji-id="5215685959298853284">📷</tg-emoji>',
+    "🔥": '<tg-emoji emoji-id="6285289874366928559">🔥</tg-emoji>',
+    "⚡": '<tg-emoji emoji-id="6284971355297290197">⚡</tg-emoji>',
+    "✨": '<tg-emoji emoji-id="5350444080084033572">✨</tg-emoji>',
+    "⚠️": '<tg-emoji emoji-id="5188463524568926712">⚠️</tg-emoji>',
+    "🌟": '<tg-emoji emoji-id="6154220795481559361">🌟</tg-emoji>',
+    "📱": '<tg-emoji emoji-id="6154328616340558803">📱</tg-emoji>',
+    "💸": '<tg-emoji emoji-id="6154665938777019329">💵</tg-emoji>',
+    "✔️": '<tg-emoji emoji-id="6267261061947200606">✔️</tg-emoji>',
+    "✈️": '<tg-emoji emoji-id="5350433153687235163">✈️</tg-emoji>',
+    "🎁": '<tg-emoji emoji-id="6154314868150243661">🎁</tg-emoji>',
+    "🌿": '<tg-emoji emoji-id="5282901450156954572">🌿</tg-emoji>',
+    "🦋": '<tg-emoji emoji-id="5281002284338140663">🦋</tg-emoji>',
+    "🐝": '<tg-emoji emoji-id="5280763638775305815">🐝</tg-emoji>',
+    "🥸": '<tg-emoji emoji-id="5280637761873794347">🥸</tg-emoji>',
+    "👹": '<tg-emoji emoji-id="6240047663828439184">👹</tg-emoji>',
+    "☠️": '<tg-emoji emoji-id="6307439368604749803">☠️</tg-emoji>',
+    "😈": '<tg-emoji emoji-id="6307666795713006953">😈</tg-emoji>',
+    "🌹": '<tg-emoji emoji-id="6100380554337721941">🌹</tg-emoji>',
+    "💟": '<tg-emoji emoji-id="5215286931067251318">💟</tg-emoji>',
+    "💿": '<tg-emoji emoji-id="5215352343419167936">💿</tg-emoji>',
+    "⏰": '<tg-emoji emoji-id="5213349767672769194">⏰</tg-emoji>',
+    "🎙": '<tg-emoji emoji-id="5212920584475782268">🎙</tg-emoji>',
+    "👾": '<tg-emoji emoji-id="5212998216009659081">👾</tg-emoji>',
+    "🕐": '<tg-emoji emoji-id="5215484787325676090">🕐</tg-emoji>',
+    "🛠": '<tg-emoji emoji-id="5213214428958306222">🛠</tg-emoji>',
+    "🍏": '<tg-emoji emoji-id="6267235257783686837">🍏</tg-emoji>',
+    "💀": '<tg-emoji emoji-id="6282728866972702273">💀</tg-emoji>',
+    "⭕️": '<tg-emoji emoji-id="6282702779341346176">⭕️</tg-emoji>',
+    "🌙": '<tg-emoji emoji-id="5350311932530270693">🌙</tg-emoji>',
+    "🧭": '<tg-emoji emoji-id="5352858062157783478">🧭</tg-emoji>',
+    "🐦": '<tg-emoji emoji-id="5431900484199783449">🐦</tg-emoji>',
+    "▶️": '<tg-emoji emoji-id="5429277560557019280">▶️</tg-emoji>',
+    "🤍": '<tg-emoji emoji-id="6161210000057309028">🤍</tg-emoji>',
+    "♾": '<tg-emoji emoji-id="6161123246012896003">♾</tg-emoji>',
+    "🤩": '<tg-emoji emoji-id="6161309428550210746">🤩</tg-emoji>',
+    "🫧": '<tg-emoji emoji-id="6163515645875982758">🫧</tg-emoji>',
+    "🎀": '<tg-emoji emoji-id="6161414534989877573">🎀</tg-emoji>',
+    "🤎": '<tg-emoji emoji-id="6186116665730666759">🤎</tg-emoji>',
+    "🍽": '<tg-emoji emoji-id="6152176648746702128">🍽</tg-emoji>',
+    "✔": '<tg-emoji emoji-id="6154718341672997377">✔</tg-emoji>',
+    "🔖": '<tg-emoji emoji-id="6154668949549092628">🔖</tg-emoji>',
+    "🎄": '<tg-emoji emoji-id="6154306875216106278">🎄</tg-emoji>',
+    "💥": '<tg-emoji emoji-id="6154203907670151815">💥</tg-emoji>',
+    "💧": '<tg-emoji emoji-id="6154388767357538799">💧</tg-emoji>',
+    "💕": '<tg-emoji emoji-id="6154409400380429396">💕</tg-emoji>',
+    "🩵": '<tg-emoji emoji-id="6154437446516871101">🩵</tg-emoji>',
+    "🛜": '<tg-emoji emoji-id="6154664143480689527">🛜</tg-emoji>',
+    "🌐": '<tg-emoji emoji-id="6154314146595738391">🌐</tg-emoji>',
+    "🅰": '<tg-emoji emoji-id="6154277325841109960">🅰</tg-emoji>',
+    "⬛️": '<tg-emoji emoji-id="6154405328751432013">⬛️</tg-emoji>',
+    "🍪": '<tg-emoji emoji-id="6154583359440819411">🍪</tg-emoji>',
+    "🖼️": '<tg-emoji emoji-id="5350693961281314631">🖼️</tg-emoji>',
+    "⭐️": '<tg-emoji emoji-id="5370784581341422520">⭐️</tg-emoji>'
+}
+
+def pe(text: str) -> str:
+    """Replace standard emojis with Custom Premium Emojis where appropriate."""
+    if not text:
+        return text
+    for standard, premium in P_EMOJI.items():
+        text = text.replace(standard, premium)
+    return text
+
+# ══════════════════════════════════════════════════
 #  LOGGING & CORE
 # ══════════════════════════════════════════════════
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -72,45 +151,45 @@ dp  = Dispatcher()
 # ══════════════════════════════════════════════════
 DEFAULT_PRODUCTS = {
     "netflix":        {"display_name": "Netflix Premium",          "keywords": ["netflix","nf","netflix premium"],                "description": "🎞️ Unlimited Movies & Series\n• 4K Ultra HD Quality\n• Multiple Screens\n• Netflix Originals Access",                    "prices": {"1 Month": 120, "3 Months": 329, "6 Months": 599, "1 Year": 1099}, "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "youtube":        {"display_name": "YouTube Premium",          "keywords": ["youtube","yt","youtube premium"],                "description": "🎵 No Ads on YouTube\n• Background Play\n• Video Downloads\n• YouTube Music Included",                              "prices": {"1 Month": 19,  "3 Months": 58,  "6 Months": 115, "1 Year": 219},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "youtubefamily":  {"display_name": "YouTube Family",           "keywords": ["youtube family","yt family"],                   "description": "👨‍👩‍👧 YouTube Family\n• Premium For Multiple Members\n• Ad-Free Videos\n• Separate Accounts",                           "prices": {"1 Month": 59,  "3 Months": 149, "6 Months": 269, "1 Year": 499},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "spotify":        {"display_name": "Spotify Premium",          "keywords": ["spotify","sp","spotify premium"],               "description": "🎶 Ad-Free Music\n• Offline Downloads\n• Unlimited Skips\n• High Audio Quality",                                      "prices": {"1 Month": 39,  "3 Months": 89,  "6 Months": 149, "1 Year": 249},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "jiohotstar":     {"display_name": "JioHotstar Premium",       "keywords": ["jiohotstar","hotstar","jio hotstar"],           "description": "📺 Live IPL & Sports\n• Latest Movies & Shows\n• Ad-Free Streaming\n• 4K Support",                                    "prices": {"1 Month": 39,  "3 Months": 90,  "6 Months": 160, "1 Year": 409},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "amazon":         {"display_name": "Amazon Prime Video",       "keywords": ["amazon","prime","amazon prime"],                "description": "🍿 Prime Movies & Web Series\n• Fast Delivery Benefits\n• Prime Music Included",                                       "prices": {"1 Month": 50,  "3 Months": 99,  "6 Months": 129, "1 Year": 249},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "sony":           {"display_name": "Sony LIV Premium",         "keywords": ["sony","sonyliv","sony liv"],                   "description": "🎬 WWE, UEFA & Sports\n• Sony TV Shows Early Access\n• Ad-Free Streaming",                                           "prices": {"1 Month": 49,  "3 Months": 109, "6 Months": 179, "1 Year": 259},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "zee5":           {"display_name": "ZEE5 Premium",             "keywords": ["zee5","zee","z5"],                             "description": "📡 Hindi & South Movies\n• TV Shows Before TV\n• Originals & Web Series",                                           "prices": {"1 Month": 39,  "3 Months": 89,  "6 Months": 149, "1 Year": 210},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "hoichoi":        {"display_name": "Hoichoi Premium",          "keywords": ["hoichoi","bengali"],                           "description": "❤️ Bengali Movies & Series\n• Exclusive Originals\n• HD Streaming",                                                "prices": {"1 Month": 49,  "3 Months": 99,  "6 Months": 169, "1 Year": 279},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "altbalaji":      {"display_name": "ALTBalaji Premium",        "keywords": ["altbalaji","alt balaji","alt"],                "description": "🎥 Indian Web Series\n• Exclusive Drama Content\n• HD Streaming",                                                    "prices": {"1 Month": 35,  "3 Months": 79,  "6 Months": 129, "1 Year": 219},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "discovery":      {"display_name": "Discovery+ Premium",       "keywords": ["discovery","discovery plus"],                  "description": "🌟 Discovery & Animal Planet\n• Science & Reality Shows\n• Ad-Free Viewing",                                          "prices": {"1 Month": 35,  "3 Months": 79,  "6 Months": 129, "1 Year": 219},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "lionsgate":      {"display_name": "Lionsgate Play",           "keywords": ["lionsgate","lions gate"],                      "description": "🎭 Hollywood Movies & Series\n• Premium English Content\n• HD Streaming",                                           "prices": {"1 Month": 39,  "3 Months": 89,  "6 Months": 149, "1 Year": 249},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "mxplayer":       {"display_name": "MX Player Gold",           "keywords": ["mx","mx player","mxplayer"],                   "description": "📱 Ad-Free Movies\n• Premium MX Originals\n• Live TV Access",                                                      "prices": {"1 Month": 29,  "3 Months": 69,  "6 Months": 119, "1 Year": 199},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "chaupal":        {"display_name": "Chaupal Premium",          "keywords": ["chaupal","punjabi"],                           "description": "🎦 Punjabi Movies & Shows\n• Regional Content\n• Exclusive Originals",                                            "prices": {"1 Month": 39,  "3 Months": 89,  "6 Months": 149, "1 Year": 249},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "applemusic":     {"display_name": "Apple Music",              "keywords": ["apple music","apple"],                         "description": "🎧 High Quality Audio\n• Millions of Songs\n• Offline Music\n• Dolby Atmos",                                         "prices": {"1 Month": 49,  "3 Months": 109, "6 Months": 189, "1 Year": 299},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "gaana":          {"display_name": "Gaana Plus",               "keywords": ["gaana","gaana plus"],                          "description": "📻 Ad-Free Songs\n• HD Music Quality\n• Unlimited Downloads",                                                       "prices": {"1 Month": 25,  "3 Months": 59,  "6 Months": 99,  "1 Year": 179},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "wynk":           {"display_name": "Wynk Music Premium",       "keywords": ["wynk","wynk music"],                           "description": "🎼 Caller Tunes\n• Offline Music\n• Ad-Free Streaming",                                                          "prices": {"1 Month": 19,  "3 Months": 49,  "6 Months": 89,  "1 Year": 149},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "chatgpt":        {"display_name": "ChatGPT Plus",             "keywords": ["chatgpt","gpt","chat gpt","chatgpt plus"],     "description": "🤖 Faster Responses\n• Advanced AI Access\n• Better Writing & Coding\n• GPT-4 Access",                              "prices": {"1 Month": 149, "3 Months": 399, "6 Months": 699, "1 Year": 1299}, "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "gemini":         {"display_name": "Gemini Premium + 2TB",     "keywords": ["gemini","google gemini"],                      "description": "🍃 Gemini AI Access\n• 2TB Google Storage\n• AI Writing & Research",                                              "prices": {"1 Month": 39,  "3 Months": 109, "6 Months": 149, "1 Year": 179},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "claudeai":       {"display_name": "Claude AI Pro",            "keywords": ["claude","claude ai","claude pro"],             "description": "🧠 Smart AI Answers\n• Long File Analysis\n• Coding & Writing Help",                                             "prices": {"1 Month": 149, "3 Months": 399, "6 Months": 699, "1 Year": 1199}, "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "blackbox":       {"display_name": "Blackbox AI Premium",      "keywords": ["blackbox","blackbox ai"],                      "description": "⚡ Coding AI Assistant\n• Error Fixing\n• Code Generation",                                                       "prices": {"1 Month": 69,  "3 Months": 150, "6 Months": 269, "1 Year": 449},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "canva":          {"display_name": "Canva Pro",                "keywords": ["canva","canva pro"],                           "description": "🎨 Premium Templates\n• AI Design Tools\n• Background Remover\n• Unlimited Exports",                               "prices": {"1 Month": 39,  "3 Months": 109, "6 Months": 149, "1 Year": 179},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "picsart":        {"display_name": "PicsArt Premium",          "keywords": ["picsart","picsart premium"],                   "description": "🖌️ Premium Editing Tools\n• AI Photo Effects\n• No Watermark",                                                    "prices": {"1 Month": 60,  "3 Months": 119, "6 Months": 169, "1 Year": 210},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "remini":         {"display_name": "Remini Premium",           "keywords": ["remini","remini premium"],                     "description": "✨ AI Photo Enhance\n• Blur Fix\n• Face Enhancement\n• HD Quality",                                             "prices": {"1 Month": 49,  "3 Months": 119, "6 Months": 199, "1 Year": 349},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "capcut":         {"display_name": "CapCut Pro",               "keywords": ["capcut","capcut pro"],                         "description": "🎬 Premium Video Effects\n• No Watermark\n• AI Editing Tools",                                                  "prices": {"1 Month": 49,  "3 Months": 109, "6 Months": 189, "1 Year": 329},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "kinemaster":     {"display_name": "KineMaster Premium",       "keywords": ["kinemaster","km","kine master"],               "description": "🎥 Pro Video Editing\n• No Watermark\n• Premium Assets",                                                         "prices": {"1 Month": 39,  "3 Months": 99,  "6 Months": 169, "1 Year": 299},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "lightroom":      {"display_name": "Lightroom Premium",        "keywords": ["lightroom","adobe lightroom"],                 "description": "📷 Professional Photo Editing\n• Premium Filters\n• Cloud Backup",                                               "prices": {"1 Month": 49,  "3 Months": 119, "6 Months": 199, "1 Year": 349},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "adobeexpress":   {"display_name": "Adobe Express Premium",    "keywords": ["adobe express","spark"],                       "description": "🎨 Premium Templates\n• AI Design Features\n• Brand Kit Access",                                                "prices": {"1 Month": 59,  "3 Months": 149, "6 Months": 249, "1 Year": 399},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "grammarly":      {"display_name": "Grammarly Premium",        "keywords": ["grammarly","grammerly"],                       "description": "📝 Grammar Correction\n• AI Writing Help\n• Plagiarism Check",                                                "prices": {"1 Month": 59,  "3 Months": 139, "6 Months": 249, "1 Year": 399},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "duolingo":       {"display_name": "Duolingo Super",           "keywords": ["duolingo","duolingo super"],                   "description": "📚 Ad-Free Learning\n• Unlimited Hearts\n• Offline Lessons",                                                  "prices": {"1 Month": 69,  "3 Months": 149, "6 Months": 249, "1 Year": 399},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "tradingview":    {"display_name": "TradingView Premium",      "keywords": ["tradingview","trading view"],                  "description": "📈 Advanced Trading Charts\n• Multiple Indicators\n• Real-Time Market Data",                                     "prices": {"1 Month": 149, "3 Months": 399, "6 Months": 699, "1 Year": 1299}, "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "microsoft365":   {"display_name": "Microsoft 365",            "keywords": ["microsoft","office 365","microsoft 365"],      "description": "☁️ Word, Excel & PowerPoint\n• 1TB OneDrive Storage\n• Premium Office Apps",                                    "prices": {"1 Month": 79,  "3 Months": 199, "6 Months": 349, "1 Year": 599},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "googleone":      {"display_name": "Google One Premium",       "keywords": ["google one","google drive premium"],           "description": "💾 Extra Google Storage\n• Backup Photos & Files\n• VPN Benefits",                                            "prices": {"1 Month": 39,  "3 Months": 99,  "6 Months": 169, "1 Year": 299},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "dropbox":        {"display_name": "Dropbox Premium",          "keywords": ["dropbox","dropbox premium"],                   "description": "📂 Large Cloud Storage\n• File Backup\n• Fast File Sharing",                                                "prices": {"1 Month": 69,  "3 Months": 169, "6 Months": 299, "1 Year": 549},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "googleworkspace":{"display_name": "Google Workspace",         "keywords": ["google workspace","gsuite"],                   "description": "📧 Professional Gmail\n• Business Tools\n• Cloud Collaboration",                                             "prices": {"1 Month": 99,  "3 Months": 249, "6 Months": 449, "1 Year": 799},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "telegrampremium":{"display_name": "Telegram Premium",         "keywords": ["telegram premium","tg premium"],               "description": "📲 Faster Downloads\n• Large Upload Limit\n• Premium Emojis\n• No Ads",                                        "prices": {"1 Month": 39,  "3 Months": 99,  "6 Months": 179, "1 Year": 299},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
-    "discord":        {"display_name": "Discord Nitro",            "keywords": ["discord","nitro","discord nitro"],             "description": "💬 HD Streaming\n• Custom Emojis\n• Bigger Upload Size",                                                     "prices": {"1 Month": 79,  "3 Months": 199, "6 Months": 349, "1 Year": 649},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "xbox":           {"display_name": "Xbox Game Pass",           "keywords": ["xbox","game pass","xbox game pass"],           "description": "🎮 Hundreds of Games\n• Online Multiplayer\n• Cloud Gaming",                                               "prices": {"1 Month": 99,  "3 Months": 249, "6 Months": 449, "1 Year": 799},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "playstation":    {"display_name": "PlayStation Plus",         "keywords": ["playstation","ps plus","ps+"],                 "description": "🎮 Online Multiplayer\n• Free Monthly Games\n• Cloud Saves",                                               "prices": {"1 Month": 119, "3 Months": 299, "6 Months": 549, "1 Year": 999},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
-    "steam":          {"display_name": "Steam Wallet Codes",       "keywords": ["steam","steam wallet"],                        "description": "🕹️ Buy Games Easily\n• In-Game Purchases\n• DLC & Premium Access",                                          "prices": {"100 Code": 89, "250 Code": 219, "500 Code": 439, "1000 Code": 879}, "stock": {"100 Code": 50, "250 Code": 30, "500 Code": 20, "1000 Code": 10}},
+    "youtube":        {"display_name": "YouTube Premium",          "keywords": ["youtube","yt","youtube premium"],                "description": "🎵 No Ads on YouTube\n• Background Play\n• Video Downloads\n• YouTube Music Included",                               "prices": {"1 Month": 19,  "3 Months": 58,  "6 Months": 115, "1 Year": 219},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "youtubefamily":  {"display_name": "YouTube Family",           "keywords": ["youtube family","yt family"],                    "description": "👨‍👩‍👧 YouTube Family\n• Premium For Multiple Members\n• Ad-Free Videos\n• Separate Accounts",                            "prices": {"1 Month": 59,  "3 Months": 149, "6 Months": 269, "1 Year": 499},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "spotify":        {"display_name": "Spotify Premium",          "keywords": ["spotify","sp","spotify premium"],                "description": "🎶 Ad-Free Music\n• Offline Downloads\n• Unlimited Skips\n• High Audio Quality",                                       "prices": {"1 Month": 39,  "3 Months": 89,  "6 Months": 149, "1 Year": 249},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "jiohotstar":     {"display_name": "JioHotstar Premium",       "keywords": ["jiohotstar","hotstar","jio hotstar"],            "description": "📺 Live IPL & Sports\n• Latest Movies & Shows\n• Ad-Free Streaming\n• 4K Support",                                    "prices": {"1 Month": 39,  "3 Months": 90,  "6 Months": 160, "1 Year": 409},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "amazon":         {"display_name": "Amazon Prime Video",       "keywords": ["amazon","prime","amazon prime"],                 "description": "🍿 Prime Movies & Web Series\n• Fast Delivery Benefits\n• Prime Music Included",                                       "prices": {"1 Month": 50,  "3 Months": 99,  "6 Months": 129, "1 Year": 249},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "sony":           {"display_name": "Sony LIV Premium",         "keywords": ["sony","sonyliv","sony liv"],                     "description": "🎬 WWE, UEFA & Sports\n• Sony TV Shows Early Access\n• Ad-Free Streaming",                                            "prices": {"1 Month": 49,  "3 Months": 109, "6 Months": 179, "1 Year": 259},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "zee5":           {"display_name": "ZEE5 Premium",             "keywords": ["zee5","zee","z5"],                               "description": "📡 Hindi & South Movies\n• TV Shows Before TV\n• Originals & Web Series",                                            "prices": {"1 Month": 39,  "3 Months": 89,  "6 Months": 149, "1 Year": 210},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "hoichoi":        {"display_name": "Hoichoi Premium",          "keywords": ["hoichoi","bengali"],                             "description": "❤️ Bengali Movies & Series\n• Exclusive Originals\n• HD Streaming",                                                "prices": {"1 Month": 49,  "3 Months": 99,  "6 Months": 169, "1 Year": 279},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "altbalaji":      {"display_name": "ALTBalaji Premium",        "keywords": ["altbalaji","alt balaji","alt"],                  "description": "🎥 Indian Web Series\n• Exclusive Drama Content\n• HD Streaming",                                                    "prices": {"1 Month": 35,  "3 Months": 79,  "6 Months": 129, "1 Year": 219},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "discovery":      {"display_name": "Discovery+ Premium",       "keywords": ["discovery","discovery plus"],                    "description": "🌟 Discovery & Animal Planet\n• Science & Reality Shows\n• Ad-Free Viewing",                                          "prices": {"1 Month": 35,  "3 Months": 79,  "6 Months": 129, "1 Year": 219},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "lionsgate":      {"display_name": "Lionsgate Play",           "keywords": ["lionsgate","lions gate"],                        "description": "🎭 Hollywood Movies & Series\n• Premium English Content\n• HD Streaming",                                            "prices": {"1 Month": 39,  "3 Months": 89,  "6 Months": 149, "1 Year": 249},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "mxplayer":       {"display_name": "MX Player Gold",           "keywords": ["mx","mx player","mxplayer"],                     "description": "📱 Ad-Free Movies\n• Premium MX Originals\n• Live TV Access",                                                       "prices": {"1 Month": 29,  "3 Months": 69,  "6 Months": 119, "1 Year": 199},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "chaupal":        {"display_name": "Chaupal Premium",          "keywords": ["chaupal","punjabi"],                             "description": "🎦 Punjabi Movies & Shows\n• Regional Content\n• Exclusive Originals",                                             "prices": {"1 Month": 39,  "3 Months": 89,  "6 Months": 149, "1 Year": 249},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "applemusic":     {"display_name": "Apple Music",              "keywords": ["apple music","apple"],                           "description": "🎧 High Quality Audio\n• Millions of Songs\n• Offline Music\n• Dolby Atmos",                                         "prices": {"1 Month": 49,  "3 Months": 109, "6 Months": 189, "1 Year": 299},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "gaana":          {"display_name": "Gaana Plus",               "keywords": ["gaana","gaana plus"],                            "description": "📻 Ad-Free Songs\n• HD Music Quality\n• Unlimited Downloads",                                                       "prices": {"1 Month": 25,  "3 Months": 59,  "6 Months": 99,  "1 Year": 179},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "wynk":           {"display_name": "Wynk Music Premium",       "keywords": ["wynk","wynk music"],                             "description": "🎼 Caller Tunes\n• Offline Music\n• Ad-Free Streaming",                                                             "prices": {"1 Month": 19,  "3 Months": 49,  "6 Months": 89,  "1 Year": 149},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "chatgpt":        {"display_name": "ChatGPT Plus",             "keywords": ["chatgpt","gpt","chat gpt","chatgpt plus"],      "description": "🤖 Faster Responses\n• Advanced AI Access\n• Better Writing & Coding\n• GPT-4 Access",                               "prices": {"1 Month": 149, "3 Months": 399, "6 Months": 699, "1 Year": 1299}, "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "gemini":         {"display_name": "Gemini Premium + 2TB",     "keywords": ["gemini","google gemini"],                        "description": "🍃 Gemini AI Access\n• 2TB Google Storage\n• AI Writing & Research",                                               "prices": {"1 Month": 39,  "3 Months": 109, "6 Months": 149, "1 Year": 179},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "claudeai":       {"display_name": "Claude AI Pro",            "keywords": ["claude","claude ai","claude pro"],              "description": "🧠 Smart AI Answers\n• Long File Analysis\n• Coding & Writing Help",                                               "prices": {"1 Month": 149, "3 Months": 399, "6 Months": 699, "1 Year": 1199}, "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "blackbox":       {"display_name": "Blackbox AI Premium",      "keywords": ["blackbox","blackbox ai"],                        "description": "⚡ Coding AI Assistant\n• Error Fixing\n• Code Generation",                                                       "prices": {"1 Month": 69,  "3 Months": 150, "6 Months": 269, "1 Year": 449},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "canva":          {"display_name": "Canva Pro",                "keywords": ["canva","canva pro"],                             "description": "🎨 Premium Templates\n• AI Design Tools\n• Background Remover\n• Unlimited Exports",                                "prices": {"1 Month": 39,  "3 Months": 109, "6 Months": 149, "1 Year": 179},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "picsart":        {"display_name": "PicsArt Premium",          "keywords": ["picsart","picsart premium"],                     "description": "🖌️ Premium Editing Tools\n• AI Photo Effects\n• No Watermark",                                                    "prices": {"1 Month": 60,  "3 Months": 119, "6 Months": 169, "1 Year": 210},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "remini":         {"display_name": "Remini Premium",           "keywords": ["remini","remini premium"],                       "description": "✨ AI Photo Enhance\n• Blur Fix\n• Face Enhancement\n• HD Quality",                                              "prices": {"1 Month": 49,  "3 Months": 119, "6 Months": 199, "1 Year": 349},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "capcut":         {"display_name": "CapCut Pro",               "keywords": ["capcut","capcut pro"],                           "description": "🎬 Premium Video Effects\n• No Watermark\n• AI Editing Tools",                                                  "prices": {"1 Month": 49,  "3 Months": 109, "6 Months": 189, "1 Year": 329},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "kinemaster":     {"display_name": "KineMaster Premium",       "keywords": ["kinemaster","km","kine master"],                 "description": "🎥 Pro Video Editing\n• No Watermark\n• Premium Assets",                                                         "prices": {"1 Month": 39,  "3 Months": 99,  "6 Months": 169, "1 Year": 299},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "lightroom":      {"display_name": "Lightroom Premium",        "keywords": ["lightroom","adobe lightroom"],                   "description": "📷 Professional Photo Editing\n• Premium Filters\n• Cloud Backup",                                               "prices": {"1 Month": 49,  "3 Months": 119, "6 Months": 199, "1 Year": 349},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "adobeexpress":   {"display_name": "Adobe Express Premium",    "keywords": ["adobe express","spark"],                         "description": "🎨 Premium Templates\n• AI Design Features\n• Brand Kit Access",                                                "prices": {"1 Month": 59,  "3 Months": 149, "6 Months": 249, "1 Year": 399},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "grammarly":      {"display_name": "Grammarly Premium",        "keywords": ["grammarly","grammerly"],                         "description": "📝 Grammar Correction\n• AI Writing Help\n• Plagiarism Check",                                                "prices": {"1 Month": 59,  "3 Months": 139, "6 Months": 249, "1 Year": 399},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "duolingo":       {"display_name": "Duolingo Super",           "keywords": ["duolingo","duolingo super"],                     "description": "📚 Ad-Free Learning\n• Unlimited Hearts\n• Offline Lessons",                                                  "prices": {"1 Month": 69,  "3 Months": 149, "6 Months": 249, "1 Year": 399},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "tradingview":    {"display_name": "TradingView Premium",      "keywords": ["tradingview","trading view"],                    "description": "📈 Advanced Trading Charts\n• Multiple Indicators\n• Real-Time Market Data",                                      "prices": {"1 Month": 149, "3 Months": 399, "6 Months": 699, "1 Year": 1299}, "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "microsoft365":   {"display_name": "Microsoft 365",            "keywords": ["microsoft","office 365","microsoft 365"],       "description": "☁️ Word, Excel & PowerPoint\n• 1TB OneDrive Storage\n• Premium Office Apps",                                    "prices": {"1 Month": 79,  "3 Months": 199, "6 Months": 349, "1 Year": 599},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "googleone":      {"display_name": "Google One Premium",       "keywords": ["google one","google drive premium"],             "description": "💾 Extra Google Storage\n• Backup Photos & Files\n• VPN Benefits",                                             "prices": {"1 Month": 39,  "3 Months": 99,  "6 Months": 169, "1 Year": 299},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "dropbox":        {"display_name": "Dropbox Premium",          "keywords": ["dropbox","dropbox premium"],                     "description": "📂 Large Cloud Storage\n• File Backup\n• Fast File Sharing",                                                "prices": {"1 Month": 69,  "3 Months": 169, "6 Months": 299, "1 Year": 549},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "googleworkspace":{"display_name": "Google Workspace",         "keywords": ["google workspace","gsuite"],                     "description": "📧 Professional Gmail\n• Business Tools\n• Cloud Collaboration",                                              "prices": {"1 Month": 99,  "3 Months": 249, "6 Months": 449, "1 Year": 799},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "telegrampremium":{"display_name": "Telegram Premium",         "keywords": ["telegram premium","tg premium"],                 "description": "📲 Faster Downloads\n• Large Upload Limit\n• Premium Emojis\n• No Ads",                                         "prices": {"1 Month": 39,  "3 Months": 99,  "6 Months": 179, "1 Year": 299},  "stock": {"1 Month": 100, "3 Months": 50, "6 Months": 30, "1 Year": 20}},
+    "discord":        {"display_name": "Discord Nitro",            "keywords": ["discord","nitro","discord nitro"],               "description": "💬 HD Streaming\n• Custom Emojis\n• Bigger Upload Size",                                                      "prices": {"1 Month": 79,  "3 Months": 199, "6 Months": 349, "1 Year": 649},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "xbox":           {"display_name": "Xbox Game Pass",           "keywords": ["xbox","game pass","xbox game pass"],             "description": "🎮 Hundreds of Games\n• Online Multiplayer\n• Cloud Gaming",                                               "prices": {"1 Month": 99,  "3 Months": 249, "6 Months": 449, "1 Year": 799},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "playstation":    {"display_name": "PlayStation Plus",         "keywords": ["playstation","ps plus","ps+"],                   "description": "🎮 Online Multiplayer\n• Free Monthly Games\n• Cloud Saves",                                               "prices": {"1 Month": 119, "3 Months": 299, "6 Months": 549, "1 Year": 999},  "stock": {"1 Month": 50,  "3 Months": 30, "6 Months": 20, "1 Year": 10}},
+    "steam":          {"display_name": "Steam Wallet Codes",       "keywords": ["steam","steam wallet"],                          "description": "🕹️ Buy Games Easily\n• In-Game Purchases\n• DLC & Premium Access",                                          "prices": {"100 Code": 89, "250 Code": 219, "500 Code": 439, "1000 Code": 879}, "stock": {"100 Code": 50, "250 Code": 30, "500 Code": 20, "1000 Code": 10}},
 
     # ── NEW SERVICES ───────────────────────────────────────────────────────────────────
     "hindtv": {
@@ -503,14 +582,6 @@ def get_all_admins():
 # ──────────────────────────────────────────────────
 #  Bot Settings helpers  (admin-editable messages)
 # ──────────────────────────────────────────────────
-# Keys used in bot_settings table:
-#   welcome_msg         – /start welcome text
-#   payment_pending_msg – message sent after screenshot
-#   offline_msg         – one-time auto-reply to new users
-#   mini_app_url        – Telegram Mini App URL (WebApp)
-#   mini_app_desc       – HIND DEALS TV description override
-#   review_link         – community / reviews channel link
-
 DEFAULT_SETTINGS = {
     "welcome_msg": "",    # Empty = use hardcoded WELCOME_MSG; set from admin panel to override
     "payment_pending_msg": (
@@ -909,13 +980,13 @@ async def gw_settle(order_id: str) -> bool:
             try:
                 await bot.send_message(
                     adm,
-                    f"⚡ <b>ONLINE PAYMENT RECEIVED — DELIVERY REQUIRED</b>\n"
-                    f"━━━━━━━━━━━━━━━━━━━━\n\n"
-                    f"Order: <code>{shop_oid}</code>\n"
-                    f"User: <code>{uid}</code>\n"
-                    f"Product: {pname}\nDuration: {dur}\n"
-                    f"Amount: ₹{amount:.0f} (auto verified ✅)\n\n"
-                    f"No screenshot needed — payment gateway confirmed.",
+                    pe(f"⚡ <b>ONLINE PAYMENT RECEIVED — DELIVERY REQUIRED</b>\n"
+                       f"━━━━━━━━━━━━━━━━━━━━\n\n"
+                       f"Order: <code>{shop_oid}</code>\n"
+                       f"User: <code>{uid}</code>\n"
+                       f"Product: {pname}\nDuration: {dur}\n"
+                       f"Amount: ₹{amount:.0f} (auto verified ✅)\n\n"
+                       f"No screenshot needed — payment gateway confirmed."),
                     parse_mode="HTML",
                     reply_markup=deliver_kb(shop_oid, uid, int(amount))
                 )
@@ -924,10 +995,10 @@ async def gw_settle(order_id: str) -> bool:
         try:
             await bot.send_message(
                 uid,
-                f"✅ <b>Payment Successful!</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-                f"Order ID: <code>{shop_oid}</code>\n"
-                f"Amount: ₹{amount:.0f}\n\n"
-                f"Admin thodi der me deliver karega. Dhanyavaad! 🙏",
+                pe(f"✅ <b>Payment Successful!</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+                   f"Order ID: <code>{shop_oid}</code>\n"
+                   f"Amount: ₹{amount:.0f}\n\n"
+                   f"Admin thodi der me deliver karega. Dhanyavaad! 🙏"),
                 parse_mode="HTML"
             )
         except Exception:
@@ -938,10 +1009,10 @@ async def gw_settle(order_id: str) -> bool:
         try:
             await bot.send_message(
                 uid,
-                f"✅ <b>Wallet Recharge Successful!</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-                f"➕ Added: <b>₹{amount:.0f}</b>\n"
-                f"💰 New Balance: <b>₹{bal:.2f}</b>\n\n"
-                f"Ab aap wallet se direct buy kar sakte hain 🛒",
+                pe(f"✅ <b>Wallet Recharge Successful!</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+                   f"➕ Added: <b>₹{amount:.0f}</b>\n"
+                   f"💰 New Balance: <b>₹{bal:.2f}</b>\n\n"
+                   f"Ab aap wallet se direct buy kar sakte hain 🛒"),
                 parse_mode="HTML"
             )
         except Exception:
@@ -1300,7 +1371,7 @@ def remember_qr(user_id: int, amount: int, dep_id: str) -> dict:
 def qr_valid_line(rec: dict) -> str:
     left = max(0, int((rec["expires"] - _now_ts()) // 60) + 1)
     till = datetime.fromtimestamp(rec["expires"]).strftime("%I:%M %p")
-    return f"⏳ Ye QR <b>{left} min</b> tak valid hai (till {till}) — dobara generate karne ki zaroorat nahi."
+    return pe(f"⏳ Ye QR <b>{left} min</b> tak valid hai (till {till}) — dobara generate karne ki zaroorat nahi.")
 
 def generate_qr(amount):
     """Return PNG bytes of the UPI QR (cached for QR_VALID_MIN minutes)."""
@@ -1340,7 +1411,7 @@ async def send_payment_qr(target, amount, caption, reply_markup=None):
             try:
                 return await target.answer_photo(
                     photo=types.BufferedInputFile(png, filename="qr.png"),
-                    caption=caption,
+                    caption=pe(caption),
                     parse_mode="HTML",
                     reply_markup=reply_markup
                 )
@@ -1351,9 +1422,9 @@ async def send_payment_qr(target, amount, caption, reply_markup=None):
     link = _upi_link(amount)
     try:
         return await target.answer(
-            caption + f"\n\n⚠️ QR image load nahi hui.\n"
+            pe(caption + f"\n\n⚠️ QR image load nahi hui.\n"
                       f"UPI ID par direct pay karein: <code>{UPI_ID}</code>\n"
-                      f"Ya ye link apne UPI app me kholein:\n<code>{link}</code>",
+                      f"Ya ye link apne UPI app me kholein:\n<code>{link}</code>"),
             parse_mode="HTML",
             reply_markup=reply_markup,
             disable_web_page_preview=True
@@ -1601,7 +1672,7 @@ def browse_text(page: int = 0) -> str:
     total       = len(keys)
     total_pages = max(1, (total + START_MENU_PER_PAGE - 1) // START_MENU_PER_PAGE)
     cur         = max(0, min(page, total_pages - 1)) + 1
-    return (
+    return pe(
         f"📦 <b>SERVICES</b>\n"
         f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
         f"👇 <b>Select a service to buy:</b>\n\n"
@@ -1639,7 +1710,7 @@ def browse_kb(page: int = 0) -> InlineKeyboardMarkup:
         label  = f"✅ {dname}" if in_stk else f"❌ {dname}"
         style  = "success" if in_stk else "danger"
         svc_buttons.append(InlineKeyboardButton(
-            text=label, callback_data=f"browse_{key}", style=style
+            text=label, callback_data=f"browse_{key}"
         ))
     for i in range(0, len(svc_buttons), 2):
         rows.append(svc_buttons[i : i + 2])
@@ -1704,7 +1775,7 @@ async def send_start_screen(target, joined: bool = True):
     target can be Message or CallbackQuery.
     """
     kb   = welcome_kb(joined=joined)
-    text = get_setting("welcome_msg") or WELCOME_MSG
+    text = pe(get_setting("welcome_msg") or WELCOME_MSG)
     if isinstance(target, Message):
         await target.answer(text, parse_mode="HTML", reply_markup=kb)
     else:
@@ -1825,7 +1896,7 @@ def settings_kb() -> InlineKeyboardMarkup:
     b.button(text="💤 Offline Auto-Reply",      callback_data="editset_offline_msg")
     b.button(text="📺 Mini App URL",            callback_data="editset_mini_app_url")
     b.button(text="🔗 Review Link",             callback_data="editset_review_link")
-    b.button(text="🔙 BACK",                   callback_data="admin_back")
+    b.button(text="🔙 BACK",                    callback_data="admin_back")
     b.adjust(1)
     return b.as_markup()
 
@@ -1834,7 +1905,7 @@ def minisubs_kb() -> InlineKeyboardMarkup:
     b.button(text="📋 View Active Subs",     callback_data="minisubs_list")
     b.button(text="🔍 Check User Sub",       callback_data="minisubs_check")
     b.button(text="❌ Revoke User Sub",      callback_data="minisubs_revoke")
-    b.button(text="🔙 BACK",                callback_data="admin_back")
+    b.button(text="🔙 BACK",                 callback_data="admin_back")
     b.adjust(1)
     return b.as_markup()
 
@@ -2000,7 +2071,7 @@ def payment_review_card(user, amount, ref_id, *, purpose,
         "━━━━━━━━━━━━━━━━━━━━",
         "⚠️ Auto approval OFF — manual admin decision required.",
     ]
-    return "\n".join(lines)
+    return pe("\n".join(lines))
 
 def payment_decision_kb(oid, amount, uid):
     return InlineKeyboardMarkup(inline_keyboard=[[
@@ -2053,6 +2124,7 @@ async def show_product_menu(target, product_key: str):
         label = "✅ In Stock" if st > 0 else "❌ OUT OF STOCK"
         desc += f"▬ {d} → ₹{pr} ({label})\n"
     desc += "\n📌 <b>Select duration:</b>"
+    desc = pe(desc)
     kb = duration_kb(product_key, p["prices"], p["stock"])
     if isinstance(target, Message):
         await target.answer(desc, parse_mode="HTML", reply_markup=kb)
@@ -2103,7 +2175,7 @@ async def start_cmd(msg: Message, state: FSMContext):
     if is_user_banned(uid):
         reason = get_ban_reason(uid)
         await msg.answer(
-            f"🚫 <b>You have been banned.</b>\n\nReason: {reason}\n\nContact: @HIND_DEALS",
+            pe(f"🚫 <b>You have been banned.</b>\n\nReason: {reason}\n\nContact: @HIND_DEALS"),
             parse_mode="HTML"
         )
         return
@@ -2128,30 +2200,30 @@ async def start_cmd(msg: Message, state: FSMContext):
 
 @dp.message(Command("help"))
 async def help_cmd(msg: Message):
-    await msg.answer(HELP_MSG, parse_mode="HTML", reply_markup=main_kb())
+    await msg.answer(pe(HELP_MSG), parse_mode="HTML", reply_markup=main_kb())
 
 @dp.message(Command("orders"))
 async def orders_cmd(msg: Message):
     uid    = msg.from_user.id
     orders = get_user_orders(uid)
     if not orders:
-        await msg.answer("📭 <b>No orders found.</b>\n\nType a service name to buy!", parse_mode="HTML", reply_markup=main_kb())
+        await msg.answer(pe("📭 <b>No orders found.</b>\n\nType a service name to buy!"), parse_mode="HTML", reply_markup=main_kb())
         return
     text = "📦 <b>YOUR ORDERS</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
     for o in orders:
         em = "✅" if o[4]=="delivered" else ("⏳" if o[4]=="pending" else "❌")
         text += f"{em} <code>{o[0]}</code> — {o[1]} ({o[2]}) — ₹{o[3]}\n"
-    await msg.answer(text, parse_mode="HTML", reply_markup=main_kb())
+    await msg.answer(pe(text), parse_mode="HTML", reply_markup=main_kb())
 
 @dp.message(Command("order"))
 async def order_cmd(msg: Message):
     parts = msg.text.split()
     if len(parts) < 2:
-        await msg.answer("⚠️ Usage: <code>/order ORDER_ID</code>", parse_mode="HTML")
+        await msg.answer(pe("⚠️ Usage: <code>/order ORDER_ID</code>"), parse_mode="HTML")
         return
     o = get_order(parts[1])
     if not o:
-        await msg.answer("❌ <b>Order not found</b>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Order not found</b>"), parse_mode="HTML")
         return
     em   = "✅" if o[6]=="delivered" else ("⏳" if o[6]=="pending" else "❌")
     text = (f"📦 <b>ORDER DETAILS</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
@@ -2164,26 +2236,24 @@ async def order_cmd(msg: Message):
         text += f"\n⭐ {'⭐'*o[9]}"
         if o[10]:
             text += f"\n📝 <i>{o[10]}</i>"
-    await msg.answer(text, parse_mode="HTML", reply_markup=main_kb())
+    await msg.answer(pe(text), parse_mode="HTML", reply_markup=main_kb())
 
 @dp.message(Command("cancel"))
 async def cancel_cmd(msg: Message, state: FSMContext):
     await state.clear()
-    await msg.answer("✅ <b>Cancelled.</b> Type a service name to continue!", parse_mode="HTML", reply_markup=main_kb())
+    await msg.answer(pe("✅ <b>Cancelled.</b> Type a service name to continue!"), parse_mode="HTML", reply_markup=main_kb())
 
 @dp.message(Command("contact"))
 async def contact_cmd(msg: Message):
     review = get_setting("review_link", "https://t.me/HIND_DEALS_REVIEWS")
     await msg.answer(
-        "📞 <b>Contact Support</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-        "Message directly: @HIND_DEALS\n\n"
-        f"📢 Reviews: {review}",
+        pe(f"📞 <b>Contact Support</b>\n━━━━━━━━━━━━━━━━━━━━\n\nMessage directly: @HIND_DEALS\n\n📢 Reviews: {review}"),
         parse_mode="HTML", reply_markup=main_kb()
     )
 
 @dp.message(Command("rules"))
 async def rules_cmd(msg: Message):
-    await msg.answer(RULES_MSG, parse_mode="HTML", reply_markup=main_kb())
+    await msg.answer(pe(RULES_MSG), parse_mode="HTML", reply_markup=main_kb())
 
 @dp.message(Command("myapp"))
 async def myapp_cmd(msg: Message):
@@ -2197,9 +2267,9 @@ async def myapp_cmd(msg: Message):
         b.button(text="🔙 Back", callback_data="back")
         b.adjust(1)
         await msg.answer(
-            "📺 <b>HIND DEALS TV</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            "❌ <b>No active subscription found.</b>\n\n"
-            "Subscribe to access Live Sports, Movies, FIFA and more!",
+            pe("📺 <b>HIND DEALS TV</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               "❌ <b>No active subscription found.</b>\n\n"
+               "Subscribe to access Live Sports, Movies, FIFA and more!"),
             parse_mode="HTML", reply_markup=b.as_markup()
         )
         return
@@ -2213,11 +2283,11 @@ async def myapp_cmd(msg: Message):
         )])
     rows.append([InlineKeyboardButton(text="🔙 Back", callback_data="back")])
     await msg.answer(
-        f"📺 <b>HIND DEALS TV — Active Subscription</b>\n"
-        f"━━━━━━━━━━━━━━━━━━━━\n\n"
-        f"✅ Plan: <b>{plan}</b>\n"
-        f"📅 Expires: <b>{expiry[:10]}</b>\n\n"
-        f"{'▶️ Tap button below to open Mini App.' if mini_url else '⏳ Mini App link coming soon — contact @HIND_DEALS'}",
+        pe(f"📺 <b>HIND DEALS TV — Active Subscription</b>\n"
+           f"━━━━━━━━━━━━━━━━━━━━\n\n"
+           f"✅ Plan: <b>{plan}</b>\n"
+           f"📅 Expires: <b>{expiry[:10]}</b>\n\n"
+           f"{'▶️ Tap button below to open Mini App.' if mini_url else '⏳ Mini App link coming soon — contact @HIND_DEALS'}"),
         parse_mode="HTML",
         reply_markup=InlineKeyboardMarkup(inline_keyboard=rows)
     )
@@ -2238,7 +2308,7 @@ async def referral_cmd(msg: Message):
 @dp.message(Command("admin"))
 async def admin_cmd(msg: Message):
     if not is_admin(msg.from_user.id):
-        await msg.answer("⛔ <b>Unauthorized</b>", parse_mode="HTML")
+        await msg.answer(pe("⛔ <b>Unauthorized</b>"), parse_mode="HTML")
         return
     await _send_admin_panel(msg)
 
@@ -2246,29 +2316,29 @@ async def admin_cmd(msg: Message):
 @dp.message(Command("addadmin"))
 async def addadmin_cmd(msg: Message, state: FSMContext):
     if msg.from_user.id != OWNER_ID:
-        await msg.answer("⛔ <b>Only owner can add admins.</b>", parse_mode="HTML")
+        await msg.answer(pe("⛔ <b>Only owner can add admins.</b>"), parse_mode="HTML")
         return
-    await msg.answer("👤 <b>Send the user ID to add as admin:</b>", parse_mode="HTML")
+    await msg.answer(pe("👤 <b>Send the user ID to add as admin:</b>"), parse_mode="HTML")
     await state.set_state(AdminManageState.waiting_add_id)
 
 @dp.message(Command("removeadmin"))
 async def removeadmin_cmd(msg: Message, state: FSMContext):
     if msg.from_user.id != OWNER_ID:
-        await msg.answer("⛔ <b>Only owner can remove admins.</b>", parse_mode="HTML")
+        await msg.answer(pe("⛔ <b>Only owner can remove admins.</b>"), parse_mode="HTML")
         return
-    await msg.answer("👤 <b>Send the admin user ID to remove:</b>", parse_mode="HTML")
+    await msg.answer(pe("👤 <b>Send the admin user ID to remove:</b>"), parse_mode="HTML")
     await state.set_state(AdminManageState.waiting_remove)
 
 @dp.message(Command("admins"))
 async def admins_cmd(msg: Message):
     if not is_admin(msg.from_user.id):
-        await msg.answer("⛔ <b>Unauthorized</b>", parse_mode="HTML")
+        await msg.answer(pe("⛔ <b>Unauthorized</b>"), parse_mode="HTML")
         return
     rows = get_all_admins()
     text = "👮 <b>ADMIN LIST</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
     for uid_, role, date in rows:
         text += f"🔹 <code>{uid_}</code> — <b>{role}</b> — {date}\n"
-    await msg.answer(text, parse_mode="HTML")
+    await msg.answer(pe(text), parse_mode="HTML")
 
 # ══════════════════════════════════════════════════
 #  QR DEPOSIT  ( /qr  |  "qr"  |  "qr 100" )
@@ -2281,17 +2351,17 @@ async def send_qr_deposit(msg: Message, amount) -> None:
     except Exception:
         amount = 0
     if amount <= 0:
-        await msg.answer("❌ <b>Amount galat hai.</b>\n\nJaise: <code>qr 100</code>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Amount galat hai.</b>\n\nJaise: <code>qr 100</code>"), parse_mode="HTML")
         return
 
     rec = active_qr(uid, amount)
     if rec:
         await msg.answer(
-            f"✅ <b>₹{amount} ka QR pehle se active hai</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"{qr_valid_line(rec)}\n\n"
-            f"🆔 Deposit ID: <code>{rec['dep_id']}</code>\n"
-            f"UPI: <code>{UPI_ID}</code>\n\n"
-            f"Upar bheja hua wahi QR scan kijiye. Expire hone ke baad naya QR milega.",
+            pe(f"✅ <b>₹{amount} ka QR pehle se active hai</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"{qr_valid_line(rec)}\n\n"
+               f"🆔 Deposit ID: <code>{rec['dep_id']}</code>\n"
+               f"UPI: <code>{UPI_ID}</code>\n\n"
+               f"Upar bheja hua wahi QR scan kijiye. Expire hone ke baad naya QR milega."),
             parse_mode="HTML")
         return
 
@@ -2322,10 +2392,10 @@ async def send_qr_deposit(msg: Message, amount) -> None:
 async def ask_qr_amount(msg: Message, state: FSMContext) -> None:
     await state.set_state(QRState.waiting_amount)
     await msg.answer(
-        "💳 <b>QR BANANA HAI — kitne ka?</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-        "Sirf amount bhejiye (jaise <code>100</code>).\n\n"
-        f"⏳ QR banne ke baad <b>{QR_VALID_MIN} minute</b> valid rahega.\n"
-        "❌ Cancel karne ke liye /cancel bhejiye.",
+        pe("💳 <b>QR BANANA HAI — kitne ka?</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+           "Sirf amount bhejiye (jaise <code>100</code>).\n\n"
+           f"⏳ QR banne ke baad <b>{QR_VALID_MIN} minute</b> valid rahega.\n"
+           "❌ Cancel karne ke liye /cancel bhejiye."),
         parse_mode="HTML")
 
 @dp.message(Command("qr"))
@@ -2344,15 +2414,15 @@ async def qr_amount_handler(msg: Message, state: FSMContext):
     text = (msg.text or "").strip()
     if text.startswith("/"):
         await state.clear()
-        await msg.answer("❌ <b>QR cancel ho gaya.</b>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>QR cancel ho gaya.</b>"), parse_mode="HTML")
         return
     m = re.search(r"(\d+(?:\.\d+)?)", text)
     if not m:
-        await msg.answer("❌ <b>Sirf number bhejiye</b> — jaise <code>100</code>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Sirf number bhejiye</b> — jaise <code>100</code>"), parse_mode="HTML")
         return
     amount = int(float(m.group(1)))
     if amount <= 0:
-        await msg.answer("❌ <b>Amount ₹1 se zyada hona chahiye.</b>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Amount ₹1 se zyada hona chahiye.</b>"), parse_mode="HTML")
         return
     await state.clear()
     await send_qr_deposit(msg, amount)
@@ -2387,9 +2457,9 @@ async def _show_wallet(target, uid: int):
     b.button(text="🔙 BACK",        callback_data="back")
     b.adjust(1)
     if isinstance(target, Message):
-        await target.answer(text, parse_mode="HTML", reply_markup=b.as_markup())
+        await target.answer(pe(text), parse_mode="HTML", reply_markup=b.as_markup())
     else:
-        await target.message.answer(text, parse_mode="HTML", reply_markup=b.as_markup())
+        await target.message.answer(pe(text), parse_mode="HTML", reply_markup=b.as_markup())
         await target.answer()
 
 async def _show_referral(target, uid: int):
@@ -2414,9 +2484,9 @@ async def _show_referral(target, uid: int):
     b.button(text="🔙 BACK",      callback_data="back")
     b.adjust(1)
     if isinstance(target, Message):
-        await target.answer(text, parse_mode="HTML", reply_markup=b.as_markup())
+        await target.answer(pe(text), parse_mode="HTML", reply_markup=b.as_markup())
     else:
-        await target.message.answer(text, parse_mode="HTML", reply_markup=b.as_markup())
+        await target.message.answer(pe(text), parse_mode="HTML", reply_markup=b.as_markup())
         await target.answer()
 
 async def _send_admin_panel(target):
@@ -2431,12 +2501,12 @@ async def _send_admin_panel(target):
             f"📅 <b>TODAY</b>\n"
             f"✅ Sales: {d_cnt}  |  ₹{d_rev}")
     if isinstance(target, Message):
-        await target.answer(text, parse_mode="HTML", reply_markup=admin_kb())
+        await target.answer(pe(text), parse_mode="HTML", reply_markup=admin_kb())
     else:
         try:
-            await target.message.edit_text(text, parse_mode="HTML", reply_markup=admin_kb())
+            await target.message.edit_text(pe(text), parse_mode="HTML", reply_markup=admin_kb())
         except Exception:
-            await target.message.answer(text, parse_mode="HTML", reply_markup=admin_kb())
+            await target.message.answer(pe(text), parse_mode="HTML", reply_markup=admin_kb())
         await target.answer()
 
 # ══════════════════════════════════════════════════
@@ -2456,7 +2526,7 @@ async def _process_referral(referred_id: int, referrer_id: int):
                            f"💚 You earned <b>₹{REFERRAL_REWARD}</b>!")
         if newly_unlocked:
             msg_to_referrer += "\n\n🔓 <b>WALLET UNLOCKED!</b> You can now use wallet for purchases."
-        await bot.send_message(referrer_id, msg_to_referrer, parse_mode="HTML")
+        await bot.send_message(referrer_id, pe(msg_to_referrer), parse_mode="HTML")
     except Exception:
         pass
 
@@ -2484,14 +2554,14 @@ async def auto_detect_service(msg: Message, state: FSMContext):
         mark_auto_replied(uid)
         offline_txt = get_setting("offline_msg")
         try:
-            await msg.answer(offline_txt, parse_mode="HTML")
+            await msg.answer(pe(offline_txt), parse_mode="HTML")
         except Exception:
             pass
 
     # Not joined — prompt join
     if not await is_joined(uid):
         await msg.answer(
-            "🔒 <b>Join our channel first!</b>\n\nRequired to use the bot.",
+            pe("🔒 <b>Join our channel first!</b>\n\nRequired to use the bot."),
             parse_mode="HTML",
             reply_markup=join_kb()
         )
@@ -2502,7 +2572,7 @@ async def auto_detect_service(msg: Message, state: FSMContext):
     if found:
         await show_product_menu(msg, found)
     elif re.search(r"\brefund\b", text.lower()):
-        await msg.answer(REFUND_MSG, parse_mode="HTML", reply_markup=main_kb())
+        await msg.answer(pe(REFUND_MSG), parse_mode="HTML", reply_markup=main_kb())
     # else: SILENT — do not send "service not found" for normal conversation
 
     # ── QR Deposit Detection ────────────────────────
@@ -2525,7 +2595,7 @@ async def auto_detect_service(msg: Message, state: FSMContext):
 @dp.message(OrderState.waiting_for_screenshot)
 async def screenshot_handler(msg: Message, state: FSMContext):
     if not msg.photo:
-        await msg.answer("❌ <b>Please send a screenshot image.</b>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Please send a screenshot image.</b>"), parse_mode="HTML")
         return
 
     data         = await state.get_data()
@@ -2555,7 +2625,7 @@ async def screenshot_handler(msg: Message, state: FSMContext):
             pass
 
     await msg.answer(
-        get_setting("payment_pending_msg"),
+        pe(get_setting("payment_pending_msg")),
         parse_mode="HTML", reply_markup=main_kb()
     )
     await state.clear()
@@ -2566,7 +2636,7 @@ async def screenshot_handler(msg: Message, state: FSMContext):
 @dp.message(DepositState.waiting_for_screenshot)
 async def deposit_screenshot_handler(msg: Message, state: FSMContext):
     if not msg.photo:
-        await msg.answer("❌ <b>Screenshot bhejiye (photo).</b>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Screenshot bhejiye (photo).</b>"), parse_mode="HTML")
         return
 
     data      = await state.get_data()
@@ -2591,10 +2661,10 @@ async def deposit_screenshot_handler(msg: Message, state: FSMContext):
             pass
 
     await msg.answer(
-        "⏳ <b>Screenshot mil gaya!</b>\n\n"
-        "🔍 Admin verify kar raha hai.\n"
-        "✅ Approve hone par wallet mein amount add ho jayega.\n\n"
-        "📩 Support: @HIND_DEALS",
+        pe("⏳ <b>Screenshot mil gaya!</b>\n\n"
+           "🔍 Admin verify kar raha hai.\n"
+           "✅ Approve hone par wallet mein amount add ho jayega.\n\n"
+           "📩 Support: @HIND_DEALS"),
         parse_mode="HTML",
         reply_markup=main_kb()
     )
@@ -2610,12 +2680,12 @@ async def review_handler(msg: Message, state: FSMContext):
     rating = data.get("rating", 0)
 
     if msg.text and msg.text.strip().lower() in ("/skip", "skip"):
-        await msg.answer("✅ <b>Thank you! Come back soon!</b> 🎉", parse_mode="HTML")
+        await msg.answer(pe("✅ <b>Thank you! Come back soon!</b> 🎉"), parse_mode="HTML")
     else:
         update_rating(oid, rating, msg.text or "")
         await msg.answer(
-            f"✅ <b>Thank you for your feedback!</b> {'⭐'*rating}\n"
-            f"━━━━━━━━━━━━━━━━━━━━\n\n<i>\"{msg.text}\"</i>\n\nCome back soon! 🎉",
+            pe(f"✅ <b>Thank you for your feedback!</b> {'⭐'*rating}\n"
+               f"━━━━━━━━━━━━━━━━━━━━\n\n<i>\"{msg.text}\"</i>\n\nCome back soon! 🎉"),
             parse_mode="HTML"
         )
     await state.clear()
@@ -2631,7 +2701,7 @@ async def admin_user_handler(msg: Message, state: FSMContext):
     try:
         uid = int(msg.text.strip())
     except Exception:
-        await msg.answer("❌ <b>Invalid ID</b>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Invalid ID</b>"), parse_mode="HTML")
         await state.clear()
         return
 
@@ -2642,9 +2712,9 @@ async def admin_user_handler(msg: Message, state: FSMContext):
     if action == "minisubs_check":
         sub = get_mini_app_sub(uid)
         if sub:
-            await msg.answer(f"📺 <b>Active Sub</b>\n\n👤 <code>{uid}</code>\n✅ Plan: {sub[0]}\n📅 Expires: {sub[1][:10]}", parse_mode="HTML")
+            await msg.answer(pe(f"📺 <b>Active Sub</b>\n\n👤 <code>{uid}</code>\n✅ Plan: {sub[0]}\n📅 Expires: {sub[1][:10]}"), parse_mode="HTML")
         else:
-            await msg.answer(f"❌ User <code>{uid}</code> ka koi active subscription nahi hai.", parse_mode="HTML")
+            await msg.answer(pe(f"❌ User <code>{uid}</code> ka koi active subscription nahi hai."), parse_mode="HTML")
         await state.clear()
         return
 
@@ -2656,11 +2726,11 @@ async def admin_user_handler(msg: Message, state: FSMContext):
         conn.commit()
         conn.close()
         await msg.answer(
-            f"✅ <b>{changed} subscription(s) revoked</b> for <code>{uid}</code>." if changed
-            else f"ℹ️ User <code>{uid}</code> ka koi active sub nahi tha.", parse_mode="HTML")
+            pe(f"✅ <b>{changed} subscription(s) revoked</b> for <code>{uid}</code>." if changed
+               else f"ℹ️ User <code>{uid}</code> ka koi active sub nahi tha."), parse_mode="HTML")
         if changed:
             try:
-                await bot.send_message(uid, "📺 <b>Aapka HIND DEALS TV subscription band kar diya gaya hai.</b>", parse_mode="HTML")
+                await bot.send_message(uid, pe("📺 <b>Aapka HIND DEALS TV subscription band kar diya gaya hai.</b>"), parse_mode="HTML")
             except Exception:
                 pass
         await state.clear()
@@ -2668,7 +2738,7 @@ async def admin_user_handler(msg: Message, state: FSMContext):
 
     user, orders = get_user_full(uid)
     if not user:
-        await msg.answer(f"❌ <b>User {uid} not found</b>", parse_mode="HTML")
+        await msg.answer(pe(f"❌ <b>User {uid} not found</b>"), parse_mode="HTML")
         await state.clear()
         return
 
@@ -2712,7 +2782,7 @@ async def admin_user_handler(msg: Message, state: FSMContext):
     rows.append([InlineKeyboardButton(text="📞 CONTACT", callback_data=f"contact_{uid}")])
     kb = InlineKeyboardMarkup(inline_keyboard=rows)
 
-    await msg.answer(text, parse_mode="HTML", reply_markup=kb)
+    await msg.answer(pe(text), parse_mode="HTML", reply_markup=kb)
     await state.clear()
 
 # ══════════════════════════════════════════════════
@@ -2770,11 +2840,11 @@ async def broadcast_content_handler(msg: Message, state: FSMContext):
     await state.update_data(bc_chat_id=msg.chat.id, bc_msg_id=msg.message_id, bc_count=len(targets))
 
     await msg.answer(
-        f"👀 <b>BROADCAST PREVIEW</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-        f"🎯 Audience: <b>{AUDIENCE_LABELS.get(audience, audience)}</b>\n"
-        f"👥 Recipients: <b>{len(targets)}</b>\n"
-        f"📨 Content: the message you just sent (upar wala)\n\n"
-        f"Bhejne ke liye <b>SEND NOW</b> dabaiye.",
+        pe(f"👀 <b>BROADCAST PREVIEW</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+           f"🎯 Audience: <b>{AUDIENCE_LABELS.get(audience, audience)}</b>\n"
+           f"👥 Recipients: <b>{len(targets)}</b>\n"
+           f"📨 Content: the message you just sent (upar wala)\n\n"
+           f"Bhejne ke liye <b>SEND NOW</b> dabaiye."),
         parse_mode="HTML",
         reply_markup=broadcast_confirm_kb()
     )
@@ -2783,7 +2853,7 @@ async def broadcast_content_handler(msg: Message, state: FSMContext):
 async def run_broadcast(admin_msg: Message, chat_id: int, msg_id: int, targets: list[int], audience: str):
     sent = failed = blocked = 0
     status = await admin_msg.answer(
-        f"📢 <b>Broadcasting…</b>\n0 / {len(targets)}", parse_mode="HTML"
+        pe(f"📢 <b>Broadcasting…</b>\n0 / {len(targets)}"), parse_mode="HTML"
     )
     for i, u in enumerate(targets, 1):
         try:
@@ -2799,20 +2869,20 @@ async def run_broadcast(admin_msg: Message, chat_id: int, msg_id: int, targets: 
         if i % 25 == 0 or i == len(targets):
             try:
                 await status.edit_text(
-                    f"📢 <b>Broadcasting…</b>\n{i} / {len(targets)}\n"
-                    f"✅ {sent}  🚫 {blocked}  ⚠️ {failed}",
+                    pe(f"📢 <b>Broadcasting…</b>\n{i} / {len(targets)}\n"
+                       f"✅ {sent}  🚫 {blocked}  ⚠️ {failed}"),
                     parse_mode="HTML"
                 )
             except Exception:
                 pass
     try:
         await status.edit_text(
-            f"✅ <b>BROADCAST COMPLETE</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"🎯 Audience: <b>{AUDIENCE_LABELS.get(audience, audience)}</b>\n"
-            f"👥 Total: {len(targets)}\n"
-            f"✅ Delivered: <b>{sent}</b>\n"
-            f"🚫 Blocked bot: {blocked}\n"
-            f"⚠️ Failed: {failed}",
+            pe(f"✅ <b>BROADCAST COMPLETE</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"🎯 Audience: <b>{AUDIENCE_LABELS.get(audience, audience)}</b>\n"
+               f"👥 Total: {len(targets)}\n"
+               f"✅ Delivered: <b>{sent}</b>\n"
+               f"🚫 Blocked bot: {blocked}\n"
+               f"⚠️ Failed: {failed}"),
             parse_mode="HTML"
         )
     except Exception:
@@ -2843,28 +2913,28 @@ async def wadm_add_handler(msg: Message, state: FSMContext):
         return
     uid, amount, reason = _parse_wallet_input(msg.text)
     if not uid:
-        await msg.answer("❌ Format galat.\n\nUse: <code>USER_ID AMOUNT reason</code>\nExample: <code>123456789 50 bonus</code>", parse_mode="HTML")
+        await msg.answer(pe("❌ Format galat.\n\nUse: <code>USER_ID AMOUNT reason</code>\nExample: <code>123456789 50 bonus</code>"), parse_mode="HTML")
         return
     u, _ = get_user_full(uid)
     if not u:
-        await msg.answer(f"❌ User <code>{uid}</code> bot me nahi mila.", parse_mode="HTML")
+        await msg.answer(pe(f"❌ User <code>{uid}</code> bot me nahi mila."), parse_mode="HTML")
         await state.clear()
         return
     credit_wallet(uid, amount, reason or f"Admin credit by {msg.from_user.id}")
     bal, _ = get_wallet(uid)
     await msg.answer(
-        f"✅ <b>₹{amount:.0f} ADDED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-        f"👤 User: <code>{uid}</code>\n💚 New Balance: <b>₹{bal:.2f}</b>\n"
-        f"📝 Reason: {reason or 'Admin credit'}",
+        pe(f"✅ <b>₹{amount:.0f} ADDED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+           f"👤 User: <code>{uid}</code>\n💚 New Balance: <b>₹{bal:.2f}</b>\n"
+           f"📝 Reason: {reason or 'Admin credit'}"),
         parse_mode="HTML"
     )
     try:
         await bot.send_message(
             uid,
-            f"💚 <b>WALLET CREDITED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"➕ ₹{amount:.0f} aapke wallet me add kiya gaya.\n"
-            f"💰 New Balance: <b>₹{bal:.2f}</b>\n"
-            f"📝 {reason or 'Admin credit'}",
+            pe(f"💚 <b>WALLET CREDITED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"➕ ₹{amount:.0f} aapke wallet me add kiya gaya.\n"
+               f"💰 New Balance: <b>₹{bal:.2f}</b>\n"
+               f"📝 {reason or 'Admin credit'}"),
             parse_mode="HTML"
         )
     except Exception:
@@ -2878,27 +2948,27 @@ async def wadm_deduct_handler(msg: Message, state: FSMContext):
         return
     uid, amount, reason = _parse_wallet_input(msg.text)
     if not uid:
-        await msg.answer("❌ Format galat.\n\nUse: <code>USER_ID AMOUNT reason</code>", parse_mode="HTML")
+        await msg.answer(pe("❌ Format galat.\n\nUse: <code>USER_ID AMOUNT reason</code>"), parse_mode="HTML")
         return
     ok = debit_wallet(uid, amount, reason or f"Admin debit by {msg.from_user.id}")
     bal, _ = get_wallet(uid)
     if not ok:
-        await msg.answer(f"❌ <b>Insufficient balance.</b>\n\n👤 <code>{uid}</code>\n💚 Current: ₹{bal:.2f}", parse_mode="HTML")
+        await msg.answer(pe(f"❌ <b>Insufficient balance.</b>\n\n👤 <code>{uid}</code>\n💚 Current: ₹{bal:.2f}"), parse_mode="HTML")
         await state.clear()
         return
     await msg.answer(
-        f"✅ <b>₹{amount:.0f} DEDUCTED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-        f"👤 User: <code>{uid}</code>\n💚 New Balance: <b>₹{bal:.2f}</b>\n"
-        f"📝 Reason: {reason or 'Admin debit'}",
+        pe(f"✅ <b>₹{amount:.0f} DEDUCTED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+           f"👤 User: <code>{uid}</code>\n💚 New Balance: <b>₹{bal:.2f}</b>\n"
+           f"📝 Reason: {reason or 'Admin debit'}"),
         parse_mode="HTML"
     )
     try:
         await bot.send_message(
             uid,
-            f"➖ <b>WALLET DEBITED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"₹{amount:.0f} wallet se kaata gaya.\n"
-            f"💰 New Balance: <b>₹{bal:.2f}</b>\n"
-            f"📝 {reason or 'Admin debit'}",
+            pe(f"➖ <b>WALLET DEBITED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"₹{amount:.0f} wallet se kaata gaya.\n"
+               f"💰 New Balance: <b>₹{bal:.2f}</b>\n"
+               f"📝 {reason or 'Admin debit'}"),
             parse_mode="HTML"
         )
     except Exception:
@@ -2913,11 +2983,11 @@ async def wadm_check_handler(msg: Message, state: FSMContext):
     try:
         uid = int((msg.text or "").strip())
     except Exception:
-        await msg.answer("❌ Sirf user ID bhejiye.", parse_mode="HTML")
+        await msg.answer(pe("❌ Sirf user ID bhejiye."), parse_mode="HTML")
         return
     u, _ = get_user_full(uid)
     if not u:
-        await msg.answer(f"❌ User <code>{uid}</code> not found.", parse_mode="HTML")
+        await msg.answer(pe(f"❌ User <code>{uid}</code> not found."), parse_mode="HTML")
         await state.clear()
         return
     bal, _ = get_wallet(uid)
@@ -2936,7 +3006,7 @@ async def wadm_check_handler(msg: Message, state: FSMContext):
     b.button(text="➖ DEDUCT",      callback_data=f"wquick_ded_{uid}")
     b.button(text="🔙 BACK",        callback_data="admin_wallet")
     b.adjust(2)
-    await msg.answer(text, parse_mode="HTML", reply_markup=b.as_markup())
+    await msg.answer(pe(text), parse_mode="HTML", reply_markup=b.as_markup())
     await state.clear()
 
 @dp.message(AdminState.waiting_for_stock_update)
@@ -2949,9 +3019,9 @@ async def stock_update_handler(msg: Message, state: FSMContext):
         new_stk  = int(parts[1].strip())
         update_stock_db(product_key, duration, new_stk)
         pname = PRODUCTS.get(product_key, {}).get("display_name", product_key)
-        await msg.answer(f"✅ <b>{pname}</b>\n• {duration}: {new_stk} units", parse_mode="HTML")
+        await msg.answer(pe(f"✅ <b>{pname}</b>\n• {duration}: {new_stk} units"), parse_mode="HTML")
     except Exception:
-        await msg.answer("❌ <b>Invalid format.</b>\n\nUse: <code>duration|new_stock</code>\nExample: <code>1 Month|50</code>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Invalid format.</b>\n\nUse: <code>duration|new_stock</code>\nExample: <code>1 Month|50</code>"), parse_mode="HTML")
     await state.clear()
 
 @dp.message(AdminState.waiting_for_ban_reason)
@@ -2961,9 +3031,9 @@ async def ban_reason_handler(msg: Message, state: FSMContext):
     reason = msg.text.strip()
     if uid:
         ban_user(uid, reason)
-        await msg.answer(f"✅ <b>User {uid} BANNED!</b>\n\nReason: {reason}", parse_mode="HTML")
+        await msg.answer(pe(f"✅ <b>User {uid} BANNED!</b>\n\nReason: {reason}"), parse_mode="HTML")
         try:
-            await bot.send_message(uid, f"🚫 <b>You have been banned.</b>\n\nReason: {reason}\n\nContact: @HIND_DEALS", parse_mode="HTML")
+            await bot.send_message(uid, pe(f"🚫 <b>You have been banned.</b>\n\nReason: {reason}\n\nContact: @HIND_DEALS"), parse_mode="HTML")
         except Exception:
             pass
     await state.clear()
@@ -2977,15 +3047,15 @@ async def admin_add_id_handler(msg: Message, state: FSMContext):
     try:
         target = int(msg.text.strip())
     except Exception:
-        await msg.answer("❌ <b>Invalid ID</b>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Invalid ID</b>"), parse_mode="HTML")
         await state.clear()
         return
     if get_admin_role(target):
-        await msg.answer(f"ℹ️ User <code>{target}</code> is already an admin.", parse_mode="HTML")
+        await msg.answer(pe(f"ℹ️ User <code>{target}</code> is already an admin."), parse_mode="HTML")
         await state.clear()
         return
     await state.update_data(new_admin_id=target)
-    await msg.answer(f"👤 <b>User {target}</b>\n\nSelect role:", parse_mode="HTML", reply_markup=role_select_kb(target))
+    await msg.answer(pe(f"👤 <b>User {target}</b>\n\nSelect role:"), parse_mode="HTML", reply_markup=role_select_kb(target))
     await state.clear()  # role is handled via callback
 
 @dp.message(AdminManageState.waiting_remove)
@@ -2996,11 +3066,11 @@ async def admin_remove_handler(msg: Message, state: FSMContext):
     try:
         target = int(msg.text.strip())
     except Exception:
-        await msg.answer("❌ <b>Invalid ID</b>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Invalid ID</b>"), parse_mode="HTML")
         await state.clear()
         return
     if target == OWNER_ID:
-        await msg.answer("⛔ Cannot remove owner.", parse_mode="HTML")
+        await msg.answer(pe("⛔ Cannot remove owner."), parse_mode="HTML")
         await state.clear()
         return
     conn = db()
@@ -3008,26 +3078,26 @@ async def admin_remove_handler(msg: Message, state: FSMContext):
     c.execute("DELETE FROM admins WHERE user_id=?", (target,))
     conn.commit()
     conn.close()
-    await msg.answer(f"✅ <b>Admin {target} removed.</b>", parse_mode="HTML")
+    await msg.answer(pe(f"✅ <b>Admin {target} removed.</b>"), parse_mode="HTML")
     await state.clear()
 
 # ── Service-add FSM ────────────────────────────────
 @dp.message(ServiceAddState.name)
 async def svc_add_name(msg: Message, state: FSMContext):
     await state.update_data(svc_name=msg.text.strip())
-    await msg.answer("📝 <b>Send service description:</b>", parse_mode="HTML")
+    await msg.answer(pe("📝 <b>Send service description:</b>"), parse_mode="HTML")
     await state.set_state(ServiceAddState.description)
 
 @dp.message(ServiceAddState.description)
 async def svc_add_desc(msg: Message, state: FSMContext):
     await state.update_data(svc_desc=msg.text.strip())
-    await msg.answer("🔑 <b>Send keywords (comma-separated):</b>\n\nExample: <code>cooler,cool,clr</code>", parse_mode="HTML")
+    await msg.answer(pe("🔑 <b>Send keywords (comma-separated):</b>\n\nExample: <code>cooler,cool,clr</code>"), parse_mode="HTML")
     await state.set_state(ServiceAddState.keywords)
 
 @dp.message(ServiceAddState.keywords)
 async def svc_add_kw(msg: Message, state: FSMContext):
     await state.update_data(svc_kw=msg.text.strip())
-    await msg.answer("⏱️ <b>Send durations (one per line):</b>\n\nExample:\n<code>1 Month\n3 Months\n6 Months</code>", parse_mode="HTML")
+    await msg.answer(pe("⏱️ <b>Send durations (one per line):</b>\n\nExample:\n<code>1 Month\n3 Months\n6 Months</code>"), parse_mode="HTML")
     await state.set_state(ServiceAddState.durations)
 
 @dp.message(ServiceAddState.durations)
@@ -3035,8 +3105,8 @@ async def svc_add_dur(msg: Message, state: FSMContext):
     durs = [d.strip() for d in msg.text.strip().split("\n") if d.strip()]
     await state.update_data(svc_durs=durs)
     await msg.answer(
-        f"💰 <b>Send prices for {len(durs)} durations (one per line):</b>\n\n"
-        + "\n".join(f"  {d}:" for d in durs),
+        pe(f"💰 <b>Send prices for {len(durs)} durations (one per line):</b>\n\n"
+           + "\n".join(f"  {d}:" for d in durs)),
         parse_mode="HTML"
     )
     await state.set_state(ServiceAddState.prices)
@@ -3047,16 +3117,16 @@ async def svc_add_prices(msg: Message, state: FSMContext):
     durs = data.get("svc_durs", [])
     price_lines = [p.strip() for p in msg.text.strip().split("\n") if p.strip()]
     if len(price_lines) != len(durs):
-        await msg.answer(f"❌ Need exactly {len(durs)} prices.", parse_mode="HTML")
+        await msg.answer(pe(f"❌ Need exactly {len(durs)} prices."), parse_mode="HTML")
         return
     try:
         prices = [int(p) for p in price_lines]
     except Exception:
-        await msg.answer("❌ Invalid prices. Enter numbers only.", parse_mode="HTML")
+        await msg.answer(pe("❌ Invalid prices. Enter numbers only."), parse_mode="HTML")
         return
     await state.update_data(svc_prices=prices)
     await msg.answer(
-        f"📦 <b>Send stocks for {len(durs)} durations (one per line):</b>",
+        pe(f"📦 <b>Send stocks for {len(durs)} durations (one per line):</b>"),
         parse_mode="HTML"
     )
     await state.set_state(ServiceAddState.stocks)
@@ -3068,12 +3138,12 @@ async def svc_add_stocks(msg: Message, state: FSMContext):
     prices = data.get("svc_prices", [])
     stock_lines = [s.strip() for s in msg.text.strip().split("\n") if s.strip()]
     if len(stock_lines) != len(durs):
-        await msg.answer(f"❌ Need exactly {len(durs)} stock values.", parse_mode="HTML")
+        await msg.answer(pe(f"❌ Need exactly {len(durs)} stock values."), parse_mode="HTML")
         return
     try:
         stocks = [int(s) for s in stock_lines]
     except Exception:
-        await msg.answer("❌ Invalid stocks. Enter numbers only.", parse_mode="HTML")
+        await msg.answer(pe("❌ Invalid stocks. Enter numbers only."), parse_mode="HTML")
         return
 
     # Build service key from name (lowercase, no spaces/special chars)
@@ -3104,11 +3174,11 @@ async def svc_add_stocks(msg: Message, state: FSMContext):
     reload_products()
 
     await msg.answer(
-        f"✅ <b>Service Added!</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-        f"🔑 Key: <code>{svc_key}</code>\n"
-        f"📛 Name: {svc_name}\n"
-        f"⏱️ Durations: {len(durs)}\n\n"
-        f"Service is now live!",
+        pe(f"✅ <b>Service Added!</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+           f"🔑 Key: <code>{svc_key}</code>\n"
+           f"📛 Name: {svc_name}\n"
+           f"⏱️ Durations: {len(durs)}\n\n"
+           f"Service is now live!"),
         parse_mode="HTML"
     )
     await state.clear()
@@ -3131,7 +3201,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                 await _process_referral(uid, rid)
                 await state.update_data(pending_referrer=None)
             # Edit the join-button message into the full welcome screen
-            wtext = get_setting("welcome_msg") or WELCOME_MSG
+            wtext = pe(get_setting("welcome_msg") or WELCOME_MSG)
             try:
                 await cb.message.edit_text(
                     wtext,
@@ -3163,7 +3233,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
 
     if data == "back":
         # Return to the welcome screen with action buttons — edit in-place
-        wtext = get_setting("welcome_msg") or WELCOME_MSG
+        wtext = pe(get_setting("welcome_msg") or WELCOME_MSG)
         try:
             await cb.message.edit_text(
                 wtext,
@@ -3181,7 +3251,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
 
     if data == "no":
         try:
-            await cb.message.edit_text("❌ <b>Cancelled.</b> Type a service name to start!", parse_mode="HTML")
+            await cb.message.edit_text(pe("❌ <b>Cancelled.</b> Type a service name to start!"), parse_mode="HTML")
         except Exception:
             pass
         await cb.answer()
@@ -3197,7 +3267,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
 
     if data == "contact":
         await cb.message.answer(
-            "📞 <b>Contact Support</b>\n━━━━━━━━━━━━━━━━━━━━\n\nMessage: @HIND_DEALS\n\n📢 Reviews: https://t.me/HIND_DEALS_REVIEWS",
+            pe("📞 <b>Contact Support</b>\n━━━━━━━━━━━━━━━━━━━━\n\nMessage: @HIND_DEALS\n\n📢 Reviews: https://t.me/HIND_DEALS_REVIEWS"),
             parse_mode="HTML", reply_markup=main_kb()
         )
         await cb.answer()
@@ -3206,13 +3276,13 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
     if data == "my_orders":
         orders = get_user_orders(uid)
         if not orders:
-            await cb.message.answer("📭 <b>No orders found</b>", parse_mode="HTML")
+            await cb.message.answer(pe("📭 <b>No orders found</b>"), parse_mode="HTML")
         else:
             text = "📦 <b>YOUR ORDERS</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
             for o in orders:
                 em = "✅" if o[4]=="delivered" else ("⏳" if o[4]=="pending" else "❌")
                 text += f"{em} <code>{o[0]}</code> — {o[1]} ({o[2]}) — ₹{o[3]}\n"
-            await cb.message.answer(text, parse_mode="HTML")
+            await cb.message.answer(pe(text), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -3277,14 +3347,13 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                 f"💚 Wallet Balance: <b>₹{bal:.2f}</b>\n\n"
                 f"👇 <b>Payment method choose kijiye:</b>")
         try:
-            await cb.message.edit_text(text, parse_mode="HTML",
+            await cb.message.edit_text(pe(text), parse_mode="HTML",
                                        reply_markup=payment_method_kb(product_key, duration, amount, bal))
         except Exception:
-            await cb.message.answer(text, parse_mode="HTML",
+            await cb.message.answer(pe(text), parse_mode="HTML",
                                     reply_markup=payment_method_kb(product_key, duration, amount, bal))
         await cb.answer()
         return
-
 
     # ══ PAYMENT GATEWAY — USER ═════════════════════
     if data == "gwadd":
@@ -3294,10 +3363,10 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         await state.set_state(GatewayState.waiting_amount)
         await state.update_data(gw_purpose="deposit")
         await cb.message.answer(
-            f"⚡ <b>INSTANT WALLET RECHARGE</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"Kitna amount add karna hai? Sirf number bhejiye.\n"
-            f"Minimum: <b>₹{gw_min()}</b>\n\n"
-            f"Payment hote hi wallet me <b>automatic</b> add ho jayega.",
+            pe(f"⚡ <b>INSTANT WALLET RECHARGE</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"Kitna amount add karna hai? Sirf number bhejiye.\n"
+               f"Minimum: <b>₹{gw_min()}</b>\n\n"
+               f"Payment hote hi wallet me <b>automatic</b> add ho jayega."),
             parse_mode="HTML"
         )
         await cb.answer()
@@ -3317,16 +3386,16 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         ok, url, err = await gw_create_order(amount, gw_oid, remark=f"order {shop_oid}")
         if not ok:
             await cb.answer("⚠️ Gateway abhi respond nahi kar raha — QR se pay kijiye.", show_alert=True)
-            await cb.message.answer(f"⚠️ <b>Online payment fail:</b> {err}", parse_mode="HTML")
+            await cb.message.answer(pe(f"⚠️ <b>Online payment fail:</b> {err}"), parse_mode="HTML")
             return
         gw_save(gw_oid, uid, amount, f"order:{shop_oid}", "", url)
         await cb.message.answer(
-            f"⚡ <b>ONLINE PAYMENT</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"📺 {PRODUCTS.get(product_key,{}).get('display_name', product_key)}\n"
-            f"⏱️ {duration}\n💰 <b>₹{amount}</b>\n\n"
-            f"1️⃣ PAY NOW dabaiye\n2️⃣ UPI se pay kijiye\n"
-            f"3️⃣ Payment hote hi order <b>automatic</b> confirm ho jayega\n\n"
-            f"🆔 Order: <code>{shop_oid}</code>",
+            pe(f"⚡ <b>ONLINE PAYMENT</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"📺 {PRODUCTS.get(product_key,{}).get('display_name', product_key)}\n"
+               f"⏱️ {duration}\n💰 <b>₹{amount}</b>\n\n"
+               f"1️⃣ PAY NOW dabaiye\n2️⃣ UPI se pay kijiye\n"
+               f"3️⃣ Payment hote hi order <b>automatic</b> confirm ho jayega\n\n"
+               f"🆔 Order: <code>{shop_oid}</code>"),
             parse_mode="HTML",
             reply_markup=gw_pay_kb(gw_oid, url)
         )
@@ -3378,15 +3447,15 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         tok = gw_token()
         masked = (tok[:4] + "•" * 6 + tok[-4:]) if len(tok) > 8 else ("set" if tok else "❌ not set")
         await cb.message.edit_text(
-            f"⚡ <b>PAYMENT GATEWAY</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"Status: <b>{'🟢 ON' if gw_enabled() else '🔴 OFF'}</b>\n"
-            f"Panel: <code>{gw_base()}</code>\n"
-            f"Token: <code>{masked}</code>\n"
-            f"Min amount: ₹{gw_min()}\n\n"
-            f"✅ Successful: {ok_cnt} — ₹{ok_sum:.0f}\n"
-            f"⏳ Pending: {pend}\n\n"
-            f"<i>Payment aate hi wallet/order auto confirm ho jata hai (har "
-            f"{GATEWAY_POLL_SECONDS}s auto-check).</i>",
+            pe(f"⚡ <b>PAYMENT GATEWAY</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"Status: <b>{'🟢 ON' if gw_enabled() else '🔴 OFF'}</b>\n"
+               f"Panel: <code>{gw_base()}</code>\n"
+               f"Token: <code>{masked}</code>\n"
+               f"Min amount: ₹{gw_min()}\n\n"
+               f"✅ Successful: {ok_cnt} — ₹{ok_sum:.0f}\n"
+               f"⏳ Pending: {pend}\n\n"
+               f"<i>Payment aate hi wallet/order auto confirm ho jata hai (har "
+               f"{GATEWAY_POLL_SECONDS}s auto-check).</i>"),
             parse_mode="HTML",
             reply_markup=gw_admin_kb()
         )
@@ -3412,20 +3481,20 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         if act == "token":
             await state.set_state(GatewayState.waiting_token)
             await cb.message.answer(
-                "🔑 <b>Gateway API token bhejiye</b>\n\n"
-                "iPey.shop panel → login → <b>API / Developer</b> section → "
-                "<code>user_token</code> copy karke yahan paste kijiye.",
+                pe("🔑 <b>Gateway API token bhejiye</b>\n\n"
+                   "iPey.shop panel → login → <b>API / Developer</b> section → "
+                   "<code>user_token</code> copy karke yahan paste kijiye."),
                 parse_mode="HTML")
             await cb.answer(); return
         if act == "base":
             await state.set_state(GatewayState.waiting_base)
             await cb.message.answer(
-                f"🌐 <b>Panel URL bhejiye</b>\n\nAbhi: <code>{gw_base()}</code>\n"
-                f"Example: <code>https://ipey.shop</code>", parse_mode="HTML")
+                pe(f"🌐 <b>Panel URL bhejiye</b>\n\nAbhi: <code>{gw_base()}</code>\n"
+                   f"Example: <code>https://ipey.shop</code>"), parse_mode="HTML")
             await cb.answer(); return
         if act == "min":
             await state.set_state(GatewayState.waiting_min)
-            await cb.message.answer("💵 <b>Minimum auto-deposit amount bhejiye (number):</b>", parse_mode="HTML")
+            await cb.message.answer(pe("💵 <b>Minimum auto-deposit amount bhejiye (number):</b>"), parse_mode="HTML")
             await cb.answer(); return
         if act == "test":
             await cb.answer("🧪 Testing…")
@@ -3434,13 +3503,13 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             if ok:
                 gw_save(test_id, uid, gw_min(), "deposit", "", url)
                 await cb.message.answer(
-                    f"✅ <b>Gateway working!</b>\n\nTest link bana:\n{url}\n\n"
-                    f"Pay karoge to ₹{gw_min()} wallet me auto add ho jayega.",
+                    pe(f"✅ <b>Gateway working!</b>\n\nTest link bana:\n{url}\n\n"
+                       f"Pay karoge to ₹{gw_min()} wallet me auto add ho jayega."),
                     parse_mode="HTML")
             else:
                 await cb.message.answer(
-                    f"❌ <b>Gateway error</b>\n\n<code>{err}</code>\n\n"
-                    f"Token / panel URL check kijiye.", parse_mode="HTML")
+                    pe(f"❌ <b>Gateway error</b>\n\n<code>{err}</code>\n\n"
+                       f"Token / panel URL check kijiye."), parse_mode="HTML")
             return
         if act == "pending":
             rows = gw_pending_rows()[:15]
@@ -3449,7 +3518,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                 txt += "Koi pending payment nahi."
             for r in rows:
                 txt += f"🆔 <code>{r[0]}</code>\n👤 {r[1]} — ₹{r[2]:.0f} — {r[3]}\n🕒 {r[8]}\n\n"
-            await cb.message.answer(txt, parse_mode="HTML")
+            await cb.message.answer(pe(txt), parse_mode="HTML")
             await cb.answer(); return
         await cb.answer()
         return
@@ -3490,13 +3559,13 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                 try:
                     await bot.send_message(
                         adm,
-                        f"💚 <b>WALLET PAYMENT — DELIVERY REQUIRED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-                        f"Order: <code>{oid}</code>\n"
-                        f"User: <code>{uid}</code>\n"
-                        f"Product: {PRODUCTS.get(product_key,{}).get('display_name','')}\n"
-                        f"Duration: {duration}\n"
-                        f"Amount: ₹{amount} (paid via wallet)\n\n"
-                        f"No screenshot required — wallet payment confirmed.",
+                        pe(f"💚 <b>WALLET PAYMENT — DELIVERY REQUIRED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+                           f"Order: <code>{oid}</code>\n"
+                           f"User: <code>{uid}</code>\n"
+                           f"Product: {PRODUCTS.get(product_key,{}).get('display_name','')}\n"
+                           f"Duration: {duration}\n"
+                           f"Amount: ₹{amount} (paid via wallet)\n\n"
+                           f"No screenshot required — wallet payment confirmed."),
                         parse_mode="HTML",
                         reply_markup=deliver_kb(oid, uid, amount)
                     )
@@ -3504,10 +3573,10 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                     pass
 
             await cb.message.edit_text(
-                f"💚 <b>Wallet Payment Successful!</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-                f"Order ID: <code>{oid}</code>\n"
-                f"₹{use_amt:.0f} deducted from wallet.\n\n"
-                f"Admin will deliver your service shortly!",
+                pe(f"💚 <b>Wallet Payment Successful!</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+                   f"Order ID: <code>{oid}</code>\n"
+                   f"₹{use_amt:.0f} deducted from wallet.\n\n"
+                   f"Admin will deliver your service shortly!"),
                 parse_mode="HTML"
             )
         else:
@@ -3540,8 +3609,8 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         duration    = parts[2]
         amount      = int(parts[3])
         await cb.message.edit_text(
-            f"🛒 <b>YOUR SELECTION</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"📺 {PRODUCTS[product_key]['display_name']}\n⏱️ {duration}\n💰 ₹{amount}\n\nProceed to payment?",
+            pe(f"🛒 <b>YOUR SELECTION</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"📺 {PRODUCTS[product_key]['display_name']}\n⏱️ {duration}\n💰 ₹{amount}\n\nProceed to payment?"),
             parse_mode="HTML",
             reply_markup=confirm_kb(product_key, duration, amount)
         )
@@ -3583,7 +3652,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         oid         = parts[4]
         await state.update_data(oid=oid, product_key=product_key, duration=duration, amount=amount)
         await cb.message.edit_caption(
-            caption=(f"📸 <b>SEND SCREENSHOT</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+            caption=pe(f"📸 <b>SEND SCREENSHOT</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
                      f"Send your payment screenshot now.\n\n"
                      f"Order ID: <code>{oid}</code>\nAmount: ₹{amount}"),
             parse_mode="HTML"
@@ -3599,7 +3668,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         rating = int(parts[2])
         await state.update_data(oid=oid, rating=rating)
         await cb.message.edit_text(
-            f"⭐ <b>Rating: {'⭐'*rating}</b>\n\n📝 Write a review (or type /skip):",
+            pe(f"⭐ <b>Rating: {'⭐'*rating}</b>\n\n📝 Write a review (or type /skip):"),
             parse_mode="HTML"
         )
         await state.set_state(OrderState.waiting_for_review)
@@ -3607,7 +3676,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         return
 
     if data.startswith("skip_"):
-        await cb.message.edit_text("✅ <b>Thank you for your order! Come back soon!</b> 🎉", parse_mode="HTML")
+        await cb.message.edit_text(pe("✅ <b>Thank you for your order! Come back soon!</b> 🎉"), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -3619,7 +3688,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         await state.update_data(dep_id=dep_id, dep_amount=amount)
         try:
             await cb.message.edit_caption(
-                caption=(
+                caption=pe(
                     f"📸 <b>DEPOSIT SCREENSHOT BHEJIYE</b>\n"
                     f"━━━━━━━━━━━━━━━━━━━━\n\n"
                     f"Payment ka screenshot ab bhejiye.\n\n"
@@ -3630,7 +3699,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             )
         except Exception:
             await cb.message.answer(
-                f"📸 <b>DEPOSIT SCREENSHOT BHEJIYE</b>\n\nPayment ka screenshot bhejiye.\n\n💰 Amount: ₹{amount}",
+                pe(f"📸 <b>DEPOSIT SCREENSHOT BHEJIYE</b>\n\nPayment ka screenshot bhejiye.\n\n💰 Amount: ₹{amount}"),
                 parse_mode="HTML"
             )
         await state.set_state(DepositState.waiting_for_screenshot)
@@ -3653,12 +3722,12 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
     if data == "admin_pending":
         pending = get_pending()
         if not pending:
-            await cb.message.answer("📭 <b>No pending orders</b>", parse_mode="HTML")
+            await cb.message.answer(pe("📭 <b>No pending orders</b>"), parse_mode="HTML")
         else:
             text = "📦 <b>PENDING ORDERS</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
             for p in pending:
                 text += f"🔹 <code>{p[0]}</code> — {p[2]} ({p[3]}) — ₹{p[4]}\n"
-            await cb.message.answer(text, parse_mode="HTML")
+            await cb.message.answer(pe(text), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -3676,7 +3745,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                 f"🤝 Total Referrals: {refs}\n\n"
                 f"📅 <b>TODAY</b>\n"
                 f"✅ Sales: {d_cnt}  |  Revenue: ₹{d_rev}")
-        await cb.message.answer(text, parse_mode="HTML")
+        await cb.message.answer(pe(text), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -3684,12 +3753,12 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
     if data == "admin_top":
         top = get_top_services()
         if not top:
-            await cb.message.answer("📊 <b>No data yet</b>", parse_mode="HTML")
+            await cb.message.answer(pe("📊 <b>No data yet</b>"), parse_mode="HTML")
         else:
             text = "🏆 <b>TOP SELLING SERVICES</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
             for i, (nm, cnt, rev) in enumerate(top, 1):
                 text += f"{i}. {nm} — {cnt} orders — ₹{rev}\n"
-            await cb.message.answer(text, parse_mode="HTML")
+            await cb.message.answer(pe(text), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -3697,25 +3766,25 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
     if data == "admin_referrers":
         rows = get_top_referrers()
         if not rows:
-            await cb.message.answer("📊 <b>No referrals yet</b>", parse_mode="HTML")
+            await cb.message.answer(pe("📊 <b>No referrals yet</b>"), parse_mode="HTML")
         else:
             text = "👑 <b>TOP REFERRERS</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
             for i, (uid_, uname, cnt) in enumerate(rows, 1):
                 text += f"{i}. @{uname or uid_} — {cnt} referrals\n"
-            await cb.message.answer(text, parse_mode="HTML")
+            await cb.message.answer(pe(text), parse_mode="HTML")
         await cb.answer()
         return
 
     # ── User Kundali ───────────────────────────────
     if data == "admin_kundali":
-        await cb.message.answer("👤 <b>Send user ID:</b>\n\nExample: <code>8598847348</code>", parse_mode="HTML")
+        await cb.message.answer(pe("👤 <b>Send user ID:</b>\n\nExample: <code>8598847348</code>"), parse_mode="HTML")
         await state.set_state(AdminState.waiting_for_user_id)
         await cb.answer()
         return
 
     # ── Ban/Unban ──────────────────────────────────
     if data == "admin_ban":
-        await cb.message.answer("🚫 <b>Send user ID to ban:</b>", parse_mode="HTML")
+        await cb.message.answer(pe("🚫 <b>Send user ID to ban:</b>"), parse_mode="HTML")
         await state.set_state(AdminState.waiting_for_user_id)
         await cb.answer()
         return
@@ -3723,7 +3792,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
     if data.startswith("ban_now_"):
         target_uid = int(data.split("_")[2])
         await state.update_data(ban_user_id=target_uid)
-        await cb.message.answer("📝 <b>Send ban reason:</b>\n\nExample: Fraud, Spam, etc.", parse_mode="HTML")
+        await cb.message.answer(pe("📝 <b>Send ban reason:</b>\n\nExample: Fraud, Spam, etc."), parse_mode="HTML")
         await state.set_state(AdminState.waiting_for_ban_reason)
         await cb.answer()
         return
@@ -3732,11 +3801,11 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         target_uid = int(data.split("_")[1])
         unban_user(target_uid)
         try:
-            await cb.message.edit_text(cb.message.text + "\n\n✅ <b>USER UNBANNED</b>", parse_mode="HTML")
+            await cb.message.edit_text(pe(cb.message.text + "\n\n✅ <b>USER UNBANNED</b>"), parse_mode="HTML")
         except Exception:
-            await cb.message.answer(f"✅ <b>User {target_uid} UNBANNED!</b>", parse_mode="HTML")
+            await cb.message.answer(pe(f"✅ <b>User {target_uid} UNBANNED!</b>"), parse_mode="HTML")
         try:
-            await bot.send_message(target_uid, "✅ <b>You have been UNBANNED!</b>\n\nType /start to continue.", parse_mode="HTML")
+            await bot.send_message(target_uid, pe("✅ <b>You have been UNBANNED!</b>\n\nType /start to continue."), parse_mode="HTML")
         except Exception:
             pass
         await cb.answer("✅ Unbanned!", show_alert=True)
@@ -3744,15 +3813,15 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
 
     if data.startswith("contact_"):
         target_uid = int(data.split("_")[1])
-        await cb.message.answer(f"📞 User ID: <code>{target_uid}</code>\n\nMessage them directly on Telegram.", parse_mode="HTML")
+        await cb.message.answer(pe(f"📞 User ID: <code>{target_uid}</code>\n\nMessage them directly on Telegram."), parse_mode="HTML")
         await cb.answer()
         return
 
     # ── Broadcast ──────────────────────────────────
     if data == "admin_broadcast":
         await cb.message.answer(
-            "📢 <b>BROADCAST</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            "🎯 Pehle audience choose kijiye:",
+            pe("📢 <b>BROADCAST</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               "🎯 Pehle audience choose kijiye:"),
             parse_mode="HTML", reply_markup=broadcast_audience_kb()
         )
         await cb.answer()
@@ -3764,12 +3833,12 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         await state.clear()
         await state.update_data(bc_audience=audience)
         await cb.message.answer(
-            f"📢 <b>{AUDIENCE_LABELS.get(audience, audience)}</b>\n"
-            f"👥 Recipients: <b>{len(targets)}</b>\n"
-            f"━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"Ab wo message bhejiye jo broadcast karna hai.\n"
-            f"📝 Text, 🖼️ photo, 🎥 video, 📄 file, 🔊 voice — kuch bhi chalega.\n\n"
-            f"❌ Rokne ke liye /cancel",
+            pe(f"📢 <b>{AUDIENCE_LABELS.get(audience, audience)}</b>\n"
+               f"👥 Recipients: <b>{len(targets)}</b>\n"
+               f"━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"Ab wo message bhejiye jo broadcast karna hai.\n"
+               f"📝 Text, 🖼️ photo, 🎥 video, 📄 file, 🔊 voice — kuch bhi chalega.\n\n"
+               f"❌ Rokne ke liye /cancel"),
             parse_mode="HTML"
         )
         await state.set_state(BroadcastState.waiting_content)
@@ -3778,7 +3847,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
 
     if data == "bc_cancel":
         await state.clear()
-        await cb.message.edit_text("❌ <b>Broadcast cancelled.</b>", parse_mode="HTML")
+        await cb.message.edit_text(pe("❌ <b>Broadcast cancelled.</b>"), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -3811,10 +3880,10 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         total, holders = c.fetchone()
         conn.close()
         await cb.message.answer(
-            f"💳 <b>WALLET MANAGEMENT</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            f"💰 Total user balance: <b>₹{total:.2f}</b>\n"
-            f"👥 Wallet holders: <b>{holders}</b>\n\n"
-            f"Kisi bhi user ki ID par balance add ya deduct kijiye.",
+            pe(f"💳 <b>WALLET MANAGEMENT</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               f"💰 Total user balance: <b>₹{total:.2f}</b>\n"
+               f"👥 Wallet holders: <b>{holders}</b>\n\n"
+               f"Kisi bhi user ki ID par balance add ya deduct kijiye."),
             parse_mode="HTML", reply_markup=wallet_mgmt_kb()
         )
         await cb.answer()
@@ -3826,18 +3895,18 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             return
         if data == "wadm_add":
             await cb.message.answer(
-                "➕ <b>ADD BALANCE</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-                "Format: <code>USER_ID AMOUNT reason</code>\n"
-                "Example: <code>123456789 100 diwali bonus</code>", parse_mode="HTML")
+                pe("➕ <b>ADD BALANCE</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+                   "Format: <code>USER_ID AMOUNT reason</code>\n"
+                   "Example: <code>123456789 100 diwali bonus</code>"), parse_mode="HTML")
             await state.set_state(WalletAdminState.waiting_add)
         elif data == "wadm_deduct":
             await cb.message.answer(
-                "➖ <b>DEDUCT BALANCE</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-                "Format: <code>USER_ID AMOUNT reason</code>\n"
-                "Example: <code>123456789 50 refund reverse</code>", parse_mode="HTML")
+                pe("➖ <b>DEDUCT BALANCE</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+                   "Format: <code>USER_ID AMOUNT reason</code>\n"
+                   "Example: <code>123456789 50 refund reverse</code>"), parse_mode="HTML")
             await state.set_state(WalletAdminState.waiting_deduct)
         else:
-            await cb.message.answer("🔍 <b>User ID bhejiye:</b>", parse_mode="HTML")
+            await cb.message.answer(pe("🔍 <b>User ID bhejiye:</b>"), parse_mode="HTML")
             await state.set_state(WalletAdminState.waiting_check)
         await cb.answer()
         return
@@ -3848,10 +3917,10 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             return
         _, action, target_id = data.split("_", 2)
         if action == "add":
-            await cb.message.answer(f"➕ Send: <code>{target_id} AMOUNT reason</code>", parse_mode="HTML")
+            await cb.message.answer(pe(f"➕ Send: <code>{target_id} AMOUNT reason</code>"), parse_mode="HTML")
             await state.set_state(WalletAdminState.waiting_add)
         else:
-            await cb.message.answer(f"➖ Send: <code>{target_id} AMOUNT reason</code>", parse_mode="HTML")
+            await cb.message.answer(pe(f"➖ Send: <code>{target_id} AMOUNT reason</code>"), parse_mode="HTML")
             await state.set_state(WalletAdminState.waiting_deduct)
         await cb.answer()
         return
@@ -3871,7 +3940,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                 text += f"{i}. <code>{u_}</code> @{un or 'N/A'} — ₹{b_:.2f}\n"
         else:
             text += "Koi wallet balance nahi hai."
-        await cb.message.answer(text, parse_mode="HTML")
+        await cb.message.answer(pe(text), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -3891,7 +3960,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                 text += f"{em} <code>{u_}</code> ₹{amt:.2f} — {reason[:25]} ({date[5:16]})\n"
         else:
             text += "No wallet activity yet."
-        await cb.message.answer(text, parse_mode="HTML")
+        await cb.message.answer(pe(text), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -3901,8 +3970,8 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             await cb.answer("⛔ Only owner", show_alert=True)
             return
         await cb.message.answer(
-            "💳 <b>WALLET PERMISSIONS</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-            "Tap karke kisi admin ko wallet give/take ki power do ya wapas lo.",
+            pe("💳 <b>WALLET PERMISSIONS</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+               "Tap karke kisi admin ko wallet give/take ki power do ya wapas lo."),
             parse_mode="HTML", reply_markup=wallet_perm_kb()
         )
         await cb.answer()
@@ -3930,9 +3999,9 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         try:
             await bot.send_message(
                 target_id,
-                ("💳 <b>Wallet permission mil gayi!</b>\n\nAb aap /admin → WALLET MGMT se users ka balance add/deduct kar sakte ho."
+                pe(("💳 <b>Wallet permission mil gayi!</b>\n\nAb aap /admin → WALLET MGMT se users ka balance add/deduct kar sakte ho."
                  if not current else
-                 "🚫 <b>Wallet permission hata di gayi hai.</b>"),
+                 "🚫 <b>Wallet permission hata di gayi hai.</b>")),
                 parse_mode="HTML"
             )
         except Exception:
@@ -3943,14 +4012,14 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
     # ── Stock management ───────────────────────────
     if data == "admin_stock":
         await state.update_data(stock_page=0)
-        await cb.message.answer("📦 <b>Select product to manage stock:</b>", parse_mode="HTML", reply_markup=stock_kb(0))
+        await cb.message.answer(pe("📦 <b>Select product to manage stock:</b>"), parse_mode="HTML", reply_markup=stock_kb(0))
         await cb.answer()
         return
 
     if data.startswith("stkpg_"):
         page = int(data.split("_")[1])
         try:
-            await cb.message.edit_text("📦 <b>Select product to manage stock:</b>", parse_mode="HTML", reply_markup=stock_kb(page))
+            await cb.message.edit_text(pe("📦 <b>Select product to manage stock:</b>"), parse_mode="HTML", reply_markup=stock_kb(page))
         except Exception:
             pass
         await cb.answer()
@@ -3967,7 +4036,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         for d, s in p["stock"].items():
             text += f"• {d}: {s} units\n"
         text += "\n━━━━━━━━━━━━━━━━━━━━\nFormat: <code>duration|new_stock</code>\nExample: <code>1 Month|50</code>"
-        await cb.message.answer(text, parse_mode="HTML")
+        await cb.message.answer(pe(text), parse_mode="HTML")
         await state.set_state(AdminState.waiting_for_stock_update)
         await cb.answer()
         return
@@ -3977,7 +4046,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         if not can_manage_services(uid):
             await cb.answer("⛔ No permission", show_alert=True)
             return
-        await cb.message.answer("🛠️ <b>SERVICES MANAGEMENT</b>\n\n✅ = Active  🚫 = Disabled", parse_mode="HTML", reply_markup=services_mgmt_kb(0))
+        await cb.message.answer(pe("🛠️ <b>SERVICES MANAGEMENT</b>\n\n✅ = Active  🚫 = Disabled"), parse_mode="HTML", reply_markup=services_mgmt_kb(0))
         await cb.answer()
         return
 
@@ -3994,7 +4063,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         if not can_manage_services(uid):
             await cb.answer("⛔ No permission", show_alert=True)
             return
-        await cb.message.answer("📛 <b>Enter service name:</b>\n\nExample: <code>Cooler Premium</code>", parse_mode="HTML")
+        await cb.message.answer(pe("📛 <b>Enter service name:</b>\n\nExample: <code>Cooler Premium</code>"), parse_mode="HTML")
         await state.set_state(ServiceAddState.name)
         await cb.answer()
         return
@@ -4018,7 +4087,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         for dur, price, stk in prices_rows:
             text += f"• {dur}: ₹{price} ({stk} stock)\n"
         text += f"\n🔘 Status: {'✅ Active' if active else '🚫 Disabled'}"
-        await cb.message.answer(text, parse_mode="HTML", reply_markup=service_detail_kb(svc_key, active))
+        await cb.message.answer(pe(text), parse_mode="HTML", reply_markup=service_detail_kb(svc_key, active))
         await cb.answer()
         return
 
@@ -4058,7 +4127,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         conn.commit()
         conn.close()
         reload_products()
-        await cb.message.edit_text("🗑️ <b>Service deleted.</b>", parse_mode="HTML", reply_markup=services_mgmt_kb())
+        await cb.message.edit_text(pe("🗑️ <b>Service deleted.</b>"), parse_mode="HTML", reply_markup=services_mgmt_kb())
         await cb.answer("Deleted!", show_alert=True)
         return
 
@@ -4074,7 +4143,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             "prices": "💰 Send new prices — format:\n<code>duration|price</code> one per line\nExample:\n<code>1 Month|49\n3 Months|99</code>",
             "stock":  "📦 Send new stock — format:\n<code>duration|stock</code> one per line",
         }
-        await cb.message.answer(prompts.get(field, "Send new value:"), parse_mode="HTML")
+        await cb.message.answer(pe(prompts.get(field, "Send new value:")), parse_mode="HTML")
         await state.set_state(ServiceEditState.new_value)
         await cb.answer()
         return
@@ -4084,7 +4153,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         if uid != OWNER_ID:
             await cb.answer("⛔ Only owner can manage admins.", show_alert=True)
             return
-        await cb.message.answer("👮 <b>ADMIN MANAGEMENT</b>\n\n⚠️ Only owner can add/remove admins.", parse_mode="HTML", reply_markup=admin_mgmt_kb())
+        await cb.message.answer(pe("👮 <b>ADMIN MANAGEMENT</b>\n\n⚠️ Only owner can add/remove admins."), parse_mode="HTML", reply_markup=admin_mgmt_kb())
         await cb.answer()
         return
 
@@ -4093,7 +4162,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         text = "👮 <b>ADMIN LIST</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
         for auid, role, date in rows:
             text += f"🔹 <code>{auid}</code> — <b>{role}</b>\n"
-        await cb.message.answer(text, parse_mode="HTML")
+        await cb.message.answer(pe(text), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -4101,7 +4170,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         if uid != OWNER_ID:
             await cb.answer("⛔ Only owner", show_alert=True)
             return
-        await cb.message.answer("👤 <b>Send user ID to add as admin:</b>", parse_mode="HTML")
+        await cb.message.answer(pe("👤 <b>Send user ID to add as admin:</b>"), parse_mode="HTML")
         await state.set_state(AdminManageState.waiting_add_id)
         await cb.answer()
         return
@@ -4110,7 +4179,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         if uid != OWNER_ID:
             await cb.answer("⛔ Only owner", show_alert=True)
             return
-        await cb.message.answer("👤 <b>Send admin user ID to remove:</b>", parse_mode="HTML")
+        await cb.message.answer(pe("👤 <b>Send admin user ID to remove:</b>"), parse_mode="HTML")
         await state.set_state(AdminManageState.waiting_remove)
         await cb.answer()
         return
@@ -4128,9 +4197,9 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                   (target_id, role, uid, now))
         conn.commit()
         conn.close()
-        await cb.message.answer(f"✅ <b>Admin added!</b>\n\nID: <code>{target_id}</code>\nRole: <b>{role}</b>", parse_mode="HTML")
+        await cb.message.answer(pe(f"✅ <b>Admin added!</b>\n\nID: <code>{target_id}</code>\nRole: <b>{role}</b>"), parse_mode="HTML")
         try:
-            await bot.send_message(target_id, f"👮 <b>You have been added as admin!</b>\n\nRole: <b>{role}</b>\n\nUse /admin to access admin panel.", parse_mode="HTML")
+            await bot.send_message(target_id, pe(f"👮 <b>You have been added as admin!</b>\n\nRole: <b>{role}</b>\n\nUse /admin to access admin panel."), parse_mode="HTML")
         except Exception:
             pass
         await cb.answer("Admin added!", show_alert=True)
@@ -4152,9 +4221,9 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                     f"• Approved by: <code>{uid}</code>\n\n"
                     f"➡️ Account details bhejne ke baad DELIVERED dabaiye.")
         try:
-            await cb.message.edit_caption(caption=msg_text, parse_mode="HTML")
+            await cb.message.edit_caption(caption=pe(msg_text), parse_mode="HTML")
         except Exception:
-            await cb.message.edit_text(msg_text, parse_mode="HTML")
+            await cb.message.edit_text(pe(msg_text), parse_mode="HTML")
 
         # Send confirmation to all admins for delivery
         conn = db()
@@ -4166,9 +4235,9 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             try:
                 await bot.send_message(
                     adm,
-                    f"🔔 <b>DELIVERY REQUIRED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-                    f"Order: <code>{oid}</code>\nUser: <code>{uid_user}</code>\nAmount: ₹{amount}\n\n"
-                    f"Send account details to user.",
+                    pe(f"🔔 <b>DELIVERY REQUIRED</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+                       f"Order: <code>{oid}</code>\nUser: <code>{uid_user}</code>\nAmount: ₹{amount}\n\n"
+                       f"Send account details to user."),
                     parse_mode="HTML",
                     reply_markup=deliver_kb(oid, uid_user, amount)
                 )
@@ -4177,7 +4246,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
 
         await bot.send_message(
             uid_user,
-            f"{PAYMENT_CONFIRMED_MSG}\n\n🆔 Order: <code>{oid}</code>",
+            pe(f"{PAYMENT_CONFIRMED_MSG}\n\n🆔 Order: <code>{oid}</code>"),
             parse_mode="HTML"
         )
         await cb.answer()
@@ -4193,10 +4262,10 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                     f"• Buyer ID: <code>{uid_user}</code>\n"
                     f"• Declined by: <code>{uid}</code>")
         try:
-            await cb.message.edit_caption(caption=msg_text, parse_mode="HTML")
+            await cb.message.edit_caption(caption=pe(msg_text), parse_mode="HTML")
         except Exception:
-            await cb.message.edit_text(msg_text, parse_mode="HTML")
-        await bot.send_message(uid_user, f"❌ <b>Order {oid} rejected.</b>\n\nContact @HIND_DEALS for help.", parse_mode="HTML")
+            await cb.message.edit_text(pe(msg_text), parse_mode="HTML")
+        await bot.send_message(uid_user, pe(f"❌ <b>Order {oid} rejected.</b>\n\nContact @HIND_DEALS for help."), parse_mode="HTML")
         await cb.answer()
         return
 
@@ -4218,17 +4287,17 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                     f"• Amount: <b>₹{amount}</b> wallet mein add ho gaya\n"
                     f"• Approved by: <code>{uid}</code>")
         try:
-            await cb.message.edit_caption(caption=msg_text, parse_mode="HTML")
+            await cb.message.edit_caption(caption=pe(msg_text), parse_mode="HTML")
         except Exception:
-            await cb.message.edit_text(msg_text, parse_mode="HTML")
+            await cb.message.edit_text(pe(msg_text), parse_mode="HTML")
         try:
             await bot.send_message(
                 uid_user,
-                f"✅ <b>Deposit Approved!</b>\n\n"
-                f"━━━━━━━━━━━━━━━━━━━━\n\n"
-                f"💚 ₹{amount} aapke wallet mein add ho gaya!\n"
-                f"🆔 Deposit ID: <code>{dep_id}</code>\n\n"
-                f"Ab aap wallet se koi bhi service khareed sakte hain. 🎉",
+                pe(f"✅ <b>Deposit Approved!</b>\n\n"
+                   f"━━━━━━━━━━━━━━━━━━━━\n\n"
+                   f"💚 ₹{amount} aapke wallet mein add ho gaya!\n"
+                   f"🆔 Deposit ID: <code>{dep_id}</code>\n\n"
+                   f"Ab aap wallet se koi bhi service khareed sakte hain. 🎉"),
                 parse_mode="HTML",
                 reply_markup=main_kb()
             )
@@ -4252,15 +4321,15 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
                     f"• Buyer ID: <code>{uid_user}</code>\n"
                     f"• Declined by: <code>{uid}</code>")
         try:
-            await cb.message.edit_caption(caption=msg_text, parse_mode="HTML")
+            await cb.message.edit_caption(caption=pe(msg_text), parse_mode="HTML")
         except Exception:
-            await cb.message.edit_text(msg_text, parse_mode="HTML")
+            await cb.message.edit_text(pe(msg_text), parse_mode="HTML")
         try:
             await bot.send_message(
                 uid_user,
-                f"❌ <b>Deposit Rejected.</b>\n\n"
-                f"🆔 Deposit ID: <code>{dep_id}</code>\n\n"
-                f"Koi issue hai? Contact karein: @HIND_DEALS",
+                pe(f"❌ <b>Deposit Rejected.</b>\n\n"
+                   f"🆔 Deposit ID: <code>{dep_id}</code>\n\n"
+                   f"Koi issue hai? Contact karein: @HIND_DEALS"),
                 parse_mode="HTML",
                 reply_markup=main_kb()
             )
@@ -4283,9 +4352,9 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         maybe_activate_hindtv(oid, uid_user)
         msg_text = f"✅ <b>Order {oid} — DELIVERED!</b>\n\nRating request sent."
         try:
-            await cb.message.edit_caption(caption=msg_text, parse_mode="HTML")
+            await cb.message.edit_caption(caption=pe(msg_text), parse_mode="HTML")
         except Exception:
-            await cb.message.edit_text(msg_text, parse_mode="HTML")
+            await cb.message.edit_text(pe(msg_text), parse_mode="HTML")
 
         # Build delivery message; if TV order, add myapp button
         sub = get_mini_app_sub(uid_user)
@@ -4297,7 +4366,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
         if sub:
             delivery_text += "📺 Your <b>HIND DEALS TV</b> subscription is now active!\nUse /myapp to access.\n\n"
         delivery_text += "⭐ <b>Rate your experience!</b> (Tap a star or SKIP)"
-        await bot.send_message(uid_user, delivery_text, parse_mode="HTML", reply_markup=deliver_kb_user)
+        await bot.send_message(uid_user, pe(delivery_text), parse_mode="HTML", reply_markup=deliver_kb_user)
         await cb.answer()
         return
 
@@ -4315,7 +4384,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             f"📺 Mini App URL: <code>{settings.get('mini_app_url','') or 'Not set'}</code>\n\n"
             "<i>All changes take effect immediately.</i>"
         )
-        await cb.message.answer(text, parse_mode="HTML", reply_markup=settings_kb())
+        await cb.message.answer(pe(text), parse_mode="HTML", reply_markup=settings_kb())
         await cb.answer()
         return
 
@@ -4332,7 +4401,7 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             "review_link":         "✏️ Send the new <b>Review/Community Link</b>:\n\n<i>Example: https://t.me/HIND_DEALS_REVIEWS</i>",
         }
         prompt = prompts.get(setting_key, "✏️ Send the new value:")
-        await cb.message.answer(prompt, parse_mode="HTML")
+        await cb.message.answer(pe(prompt), parse_mode="HTML")
         await state.update_data(setting_key=setting_key)
         await state.set_state(EditSettingState.waiting_value)
         await cb.answer()
@@ -4345,31 +4414,31 @@ async def handle_cb(cb: CallbackQuery, state: FSMContext):
             return
         active = get_all_active_subs(50)
         text = f"📺 <b>HIND DEALS TV — Active Subscriptions</b>\n━━━━━━━━━━━━━━━━━━━━\n\nTotal active: <b>{len(active)}</b>\n"
-        await cb.message.answer(text, parse_mode="HTML", reply_markup=minisubs_kb())
+        await cb.message.answer(pe(text), parse_mode="HTML", reply_markup=minisubs_kb())
         await cb.answer()
         return
 
     if data == "minisubs_list":
         active = get_all_active_subs(30)
         if not active:
-            await cb.message.answer("📭 <b>No active subscriptions</b>", parse_mode="HTML")
+            await cb.message.answer(pe("📭 <b>No active subscriptions</b>"), parse_mode="HTML")
         else:
             text = "📺 <b>ACTIVE MINI APP SUBS</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
             for uid_, uname, plan, expiry in active:
                 text += f"👤 @{uname or uid_} (<code>{uid_}</code>)\n   {plan} → {expiry[:10]}\n\n"
-            await cb.message.answer(text, parse_mode="HTML")
+            await cb.message.answer(pe(text), parse_mode="HTML")
         await cb.answer()
         return
 
     if data == "minisubs_check":
-        await cb.message.answer("👤 <b>Send user ID to check subscription:</b>", parse_mode="HTML")
+        await cb.message.answer(pe("👤 <b>Send user ID to check subscription:</b>"), parse_mode="HTML")
         await state.set_state(AdminState.waiting_for_user_id)
         await state.update_data(admin_action="minisubs_check")
         await cb.answer()
         return
 
     if data == "minisubs_revoke":
-        await cb.message.answer("👤 <b>Send user ID to revoke subscription:</b>", parse_mode="HTML")
+        await cb.message.answer(pe("👤 <b>Send user ID to revoke subscription:</b>"), parse_mode="HTML")
         await state.set_state(AdminState.waiting_for_user_id)
         await state.update_data(admin_action="minisubs_revoke")
         await cb.answer()
@@ -4394,21 +4463,21 @@ async def svc_edit_value_handler(msg: Message, state: FSMContext):
         conn.commit()
         conn.close()
         reload_products()
-        await msg.answer(f"✅ <b>Name updated!</b>", parse_mode="HTML")
+        await msg.answer(pe(f"✅ <b>Name updated!</b>"), parse_mode="HTML")
 
     elif field == "desc":
         c.execute("UPDATE services SET description=? WHERE service_key=?", (msg.text.strip(), svc_key))
         conn.commit()
         conn.close()
         reload_products()
-        await msg.answer("✅ <b>Description updated!</b>", parse_mode="HTML")
+        await msg.answer(pe("✅ <b>Description updated!</b>"), parse_mode="HTML")
 
     elif field == "kw":
         c.execute("UPDATE services SET keywords=? WHERE service_key=?", (msg.text.strip(), svc_key))
         conn.commit()
         conn.close()
         reload_products()
-        await msg.answer(f"✅ <b>Keywords updated!</b>", parse_mode="HTML")
+        await msg.answer(pe(f"✅ <b>Keywords updated!</b>"), parse_mode="HTML")
 
     elif field == "prices":
         lines = [l.strip() for l in msg.text.strip().split("\n") if l.strip()]
@@ -4424,9 +4493,9 @@ async def svc_edit_value_handler(msg: Message, state: FSMContext):
         conn.close()
         reload_products()
         if errors:
-            await msg.answer(f"⚠️ Updated with errors on: {', '.join(errors)}", parse_mode="HTML")
+            await msg.answer(pe(f"⚠️ Updated with errors on: {', '.join(errors)}"), parse_mode="HTML")
         else:
-            await msg.answer("✅ <b>Prices updated!</b>", parse_mode="HTML")
+            await msg.answer(pe("✅ <b>Prices updated!</b>"), parse_mode="HTML")
 
     elif field == "stock":
         lines = [l.strip() for l in msg.text.strip().split("\n") if l.strip()]
@@ -4442,12 +4511,12 @@ async def svc_edit_value_handler(msg: Message, state: FSMContext):
         conn.close()
         reload_products()
         if errors:
-            await msg.answer(f"⚠️ Updated with errors on: {', '.join(errors)}", parse_mode="HTML")
+            await msg.answer(pe(f"⚠️ Updated with errors on: {', '.join(errors)}"), parse_mode="HTML")
         else:
-            await msg.answer("✅ <b>Stock updated!</b>", parse_mode="HTML")
+            await msg.answer(pe("✅ <b>Stock updated!</b>"), parse_mode="HTML")
     else:
         conn.close()
-        await msg.answer("❌ Unknown field.", parse_mode="HTML")
+        await msg.answer(pe("❌ Unknown field."), parse_mode="HTML")
 
     await state.clear()
 
@@ -4486,7 +4555,7 @@ async def edit_setting_value_handler(msg: Message, state: FSMContext):
     key  = data.get("setting_key", "")
     val  = msg.text or ""
     if not key or not val.strip():
-        await msg.answer("❌ <b>Empty value — not saved.</b>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Empty value — not saved.</b>"), parse_mode="HTML")
         await state.clear()
         return
     set_setting(key, val.strip())
@@ -4498,13 +4567,11 @@ async def edit_setting_value_handler(msg: Message, state: FSMContext):
         "review_link":         "Review Link",
     }.get(key, key)
     await msg.answer(
-        f"✅ <b>{friendly} updated successfully!</b>\n\n"
-        f"<i>New value saved. It will be used from now on.</i>",
+        pe(f"✅ <b>{friendly} updated successfully!</b>\n\n"
+           f"<i>New value saved. It will be used from now on.</i>"),
         parse_mode="HTML"
     )
     await state.clear()
-
-
 
 
 # ══════════════════════════════════════════════════
@@ -4516,10 +4583,10 @@ async def gw_amount_handler(msg: Message, state: FSMContext):
     try:
         amount = int(float(raw))
     except Exception:
-        await msg.answer("❌ <b>Sirf number bhejiye</b> jaise <code>100</code>", parse_mode="HTML")
+        await msg.answer(pe("❌ <b>Sirf number bhejiye</b> jaise <code>100</code>"), parse_mode="HTML")
         return
     if amount < gw_min():
-        await msg.answer(f"❌ Minimum ₹{gw_min()} hai.", parse_mode="HTML")
+        await msg.answer(pe(f"❌ Minimum ₹{gw_min()} hai."), parse_mode="HTML")
         return
     await state.clear()
     uid = msg.from_user.id
@@ -4527,16 +4594,16 @@ async def gw_amount_handler(msg: Message, state: FSMContext):
     ok, url, err = await gw_create_order(amount, gw_oid, remark="wallet recharge")
     if not ok:
         await msg.answer(
-            f"⚠️ <b>Online payment abhi available nahi</b>\n\n<code>{err}</code>\n\n"
-            f"Aap <code>qr {amount}</code> type karke QR se bhi pay kar sakte hain.",
+            pe(f"⚠️ <b>Online payment abhi available nahi</b>\n\n<code>{err}</code>\n\n"
+               f"Aap <code>qr {amount}</code> type karke QR se bhi pay kar sakte hain."),
             parse_mode="HTML")
         return
     gw_save(gw_oid, uid, amount, "deposit", "", url)
     await msg.answer(
-        f"⚡ <b>WALLET RECHARGE — ₹{amount}</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-        f"1️⃣ <b>PAY NOW</b> dabaiye\n2️⃣ Kisi bhi UPI app se pay kijiye\n"
-        f"3️⃣ Paisa aate hi wallet me <b>automatic</b> add ho jayega\n\n"
-        f"🆔 <code>{gw_oid}</code>\n⏱️ Link {GATEWAY_EXPIRY_MIN} min valid hai.",
+        pe(f"⚡ <b>WALLET RECHARGE — ₹{amount}</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+           f"1️⃣ <b>PAY NOW</b> dabaiye\n2️⃣ Kisi bhi UPI app se pay kijiye\n"
+           f"3️⃣ Paisa aate hi wallet me <b>automatic</b> add ho jayega\n\n"
+           f"🆔 <code>{gw_oid}</code>\n⏱️ Link {GATEWAY_EXPIRY_MIN} min valid hai."),
         parse_mode="HTML",
         reply_markup=gw_pay_kb(gw_oid, url)
     )
@@ -4547,13 +4614,13 @@ async def gw_token_handler(msg: Message, state: FSMContext):
         await state.clear(); return
     tok = (msg.text or "").strip()
     if len(tok) < 6:
-        await msg.answer("❌ Token bahut chhota lag raha hai. Dobara bhejiye.", parse_mode="HTML")
+        await msg.answer(pe("❌ Token bahut chhota lag raha hai. Dobara bhejiye."), parse_mode="HTML")
         return
     set_setting("gw_token", tok)
     set_setting("gw_enabled", "1")
     await state.clear()
-    await msg.answer("✅ <b>Token save ho gaya aur gateway ON hai.</b>\n\n"
-                     "Ab admin panel → ⚡ PAYMENT GATEWAY → 🧪 TEST GATEWAY se check kijiye.",
+    await msg.answer(pe("✅ <b>Token save ho gaya aur gateway ON hai.</b>\n\n"
+                        "Ab admin panel → ⚡ PAYMENT GATEWAY → 🧪 TEST GATEWAY se check kijiye."),
                      parse_mode="HTML")
 
 @dp.message(GatewayState.waiting_base)
@@ -4562,11 +4629,11 @@ async def gw_base_handler(msg: Message, state: FSMContext):
         await state.clear(); return
     url = (msg.text or "").strip().rstrip("/")
     if not url.startswith("http"):
-        await msg.answer("❌ URL <code>https://</code> se start hona chahiye.", parse_mode="HTML")
+        await msg.answer(pe("❌ URL <code>https://</code> se start hona chahiye."), parse_mode="HTML")
         return
     set_setting("gw_base", url)
     await state.clear()
-    await msg.answer(f"✅ Panel URL set: <code>{url}</code>", parse_mode="HTML")
+    await msg.answer(pe(f"✅ Panel URL set: <code>{url}</code>"), parse_mode="HTML")
 
 @dp.message(GatewayState.waiting_min)
 async def gw_min_handler(msg: Message, state: FSMContext):
@@ -4575,35 +4642,35 @@ async def gw_min_handler(msg: Message, state: FSMContext):
     try:
         val = max(1, int(float((msg.text or "").strip())))
     except Exception:
-        await msg.answer("❌ Sirf number bhejiye.", parse_mode="HTML")
+        await msg.answer(pe("❌ Sirf number bhejiye."), parse_mode="HTML")
         return
     set_setting("gw_min", str(val))
     await state.clear()
-    await msg.answer(f"✅ Minimum amount ₹{val} set.", parse_mode="HTML")
+    await msg.answer(pe(f"✅ Minimum amount ₹{val} set."), parse_mode="HTML")
 
 @dp.message(Command("gateway"))
 async def gateway_cmd(msg: Message, state: FSMContext):
     if not is_admin(msg.from_user.id):
-        await msg.answer("⛔ <b>Unauthorized</b>", parse_mode="HTML")
+        await msg.answer(pe("⛔ <b>Unauthorized</b>"), parse_mode="HTML")
         return
     ok_cnt, ok_sum, pend = gw_stats()
     tok = gw_token()
     masked = (tok[:4] + "•" * 6 + tok[-4:]) if len(tok) > 8 else ("set" if tok else "❌ not set")
     await msg.answer(
-        f"⚡ <b>PAYMENT GATEWAY</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
-        f"Status: <b>{'🟢 ON' if gw_enabled() else '🔴 OFF'}</b>\n"
-        f"Panel: <code>{gw_base()}</code>\nToken: <code>{masked}</code>\n"
-        f"Min: ₹{gw_min()}\n\n✅ Success: {ok_cnt} — ₹{ok_sum:.0f}\n⏳ Pending: {pend}",
+        pe(f"⚡ <b>PAYMENT GATEWAY</b>\n━━━━━━━━━━━━━━━━━━━━\n\n"
+           f"Status: <b>{'🟢 ON' if gw_enabled() else '🔴 OFF'}</b>\n"
+           f"Panel: <code>{gw_base()}</code>\nToken: <code>{masked}</code>\n"
+           f"Min: ₹{gw_min()}\n\n✅ Success: {ok_cnt} — ₹{ok_sum:.0f}\n⏳ Pending: {pend}"),
         parse_mode="HTML", reply_markup=gw_admin_kb())
 
 @dp.message(Command("addmoney"))
 async def addmoney_cmd(msg: Message, state: FSMContext):
     if not gw_enabled():
-        await msg.answer("⚡ Auto payment abhi band hai.\n\n<code>qr 100</code> type karke QR se add kijiye.",
+        await msg.answer(pe("⚡ Auto payment abhi band hai.\n\n<code>qr 100</code> type karke QR se add kijiye."),
                          parse_mode="HTML")
         return
     await state.set_state(GatewayState.waiting_amount)
-    await msg.answer(f"⚡ <b>Kitna amount add karna hai?</b> (min ₹{gw_min()})", parse_mode="HTML")
+    await msg.answer(pe(f"⚡ <b>Kitna amount add karna hai?</b> (min ₹{gw_min()})"), parse_mode="HTML")
 
 # ══════════════════════════════════════════════════
 #  MAIN
