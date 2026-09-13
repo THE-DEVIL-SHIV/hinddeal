@@ -33,7 +33,7 @@ from aiogram.fsm.state import State, StatesGroup
 # ══════════════════════════════════════════════════
 #  CONFIGURATION
 # ══════════════════════════════════════════════════
-BOT_TOKEN          = "8884781990:AAGv-LAD5_3KP7qWFaCvh7AgVCY-9roBhQY"
+BOT_TOKEN          = "8738071957:AAFswpTbZJXBAcufUdSDfSgHzGO-2P0hBRQ"
 OWNER_ID           = 8733687681           # Only owner can add/remove admins
 CHANNEL_USERNAME   = "HIIND_DEALS_OFFICIAL"
 UPI_ID             = "12749702@axl"
